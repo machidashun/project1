@@ -28,5 +28,6 @@ public class NewBehaviourScript : MonoBehaviour
             CancelInvoke("ExpandingON");
             myTransform.localScale = new Vector3(expscale,expscale,expscale);
         }
+        //14:49
     }
 }
