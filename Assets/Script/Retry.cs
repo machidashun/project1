@@ -9,7 +9,18 @@ public class Retry : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene("SampleScene");//ゲームシーンを再度読み込み
+            REtry();
         }
+    }
+
+    public void REtry()
+    {
+        Invoke("Retrytime",0.5f);
+    }
+
+    public void Retrytime()
+    {
+        CancelInvoke("Retrytime");
+        SceneManager.LoadScene("SampleScene");
     }
 }

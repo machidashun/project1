@@ -25,9 +25,11 @@ public class PlayerControl : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     
     public int Saltcount;
+    Retry retry;
     // Start is called before the first frame update
     void Start()
     {
+        retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         IceControl.changeFlag = true;
         Saltcount = 0;
         animator = GetComponent<Animator>();
@@ -202,6 +204,19 @@ public class PlayerControl : MonoBehaviour
         if (hit.gameObject.tag == "Oil")
         {
             Destroy(gameObject);
+            retry.REtry();
+        }
+
+        if (hit.gameObject.tag == "Fire")
+        {
+            Destroy(gameObject);
+            retry.REtry();
+        }
+
+        if (hit.gameObject.tag == "Thorn")
+        {
+            Destroy(gameObject);
+            retry.REtry();
         }
 
         if (hit.gameObject.tag == "Salt")

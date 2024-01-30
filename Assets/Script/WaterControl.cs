@@ -40,5 +40,15 @@ public class WaterControl : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (hit.gameObject.tag == "Fire")
+        {
+            Transform myTransform = this.transform;
+            Vector3 pos = myTransform.position;
+
+            Instantiate(obj[1], new Vector3(pos.x, pos.y + 0.5f, pos.z), Quaternion.identity);
+            
+            Destroy(gameObject);
+        }
     }
 }
