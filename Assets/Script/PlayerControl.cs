@@ -46,6 +46,15 @@ public class PlayerControl : MonoBehaviour
             IceControl.changeFlag = false;
         }
 
+        Transform myTransform = this.transform;
+        Vector3 pos = myTransform.position;
+
+        if(pos.y < -4)
+        {
+            Destroy(gameObject);
+            retry.REtry();
+        }
+
         second += Time.deltaTime;
         if (second >= 15)
         {
@@ -54,47 +63,6 @@ public class PlayerControl : MonoBehaviour
             Idleanimation();
         }
         
-
-        /* if (Input.GetKey("down") || Input.GetKey("s"))
-        {
-            Walkanimation();
-            Move();
-            float angleDiff = Mathf.DeltaAngle(transform.localEulerAngles.y, 180);
-            if (angleDiff == 0)
-            {
-                controller.Move (this.gameObject.transform.forward * speed * Time.deltaTime);
-            } else if (angleDiff < -1f)
-            {
-                transform.Rotate(0, rotas * -1, 0);
-            } else if (angleDiff > 1f)
-            {
-                transform.Rotate(0, rotas * 1, 0);
-            } else {
-                transform.rotation = Quaternion.Euler(0.0f, 180, 0.0f);
-            }
-        } 
-        
-        if (Input.GetKey("up") || Input.GetKey("w")) 
-        {
-            Walkanimation();
-            Move();
-            float angleDiff = Mathf.DeltaAngle(transform.localEulerAngles.y, 0);
-            if (angleDiff == 0) 
-            {
-                controller.Move (this.gameObject.transform.forward * speed * Time.deltaTime);
-            } else if (angleDiff < -1f) 
-            {
-                transform.Rotate( 0,rotas * -1, 0);
-            } else if (angleDiff > 1f) 
-            {
-                transform.Rotate( 0,rotas * 1, 0);
-            } else 
-            {
-                transform.rotation = Quaternion.identity;
-            }
-        }
-        */
-
         if (Input.GetKey("left") || Input.GetKey("a"))
         {
             Walkanimation();
@@ -160,7 +128,6 @@ public class PlayerControl : MonoBehaviour
     {
         if (controller.isGrounded)
         {
-            
             animator.SetBool("jumpFlag", true);
             animator.SetBool("walkFlag", false);
             animator.SetBool("idleFlag", false);

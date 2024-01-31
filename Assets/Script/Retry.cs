@@ -20,13 +20,12 @@ public class Retry : MonoBehaviour
             {
                 Retrytime();
             }
-            //REtry();
         }
 
         if(Input.GetKeyUp(KeyCode.R))
         {
             resettime = 0;
-            Debug.Log(resettime);
+            //Debug.Log(resettime);
         }
     }
 
