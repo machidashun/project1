@@ -4,12 +4,29 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class Retry : MonoBehaviour
 {
+    float resettime;
+
+    void Start()
+    {
+        resettime = 0;
+    }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKey(KeyCode.R))
         {
-            REtry();
+            resettime += Time.deltaTime;
+            if(resettime >= 1.5f)
+            {
+                Retrytime();
+            }
+            //REtry();
+        }
+
+        if(Input.GetKeyUp(KeyCode.R))
+        {
+            resettime = 0;
+            Debug.Log(resettime);
         }
     }
 
