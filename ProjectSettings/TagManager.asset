@@ -12,6 +12,7 @@ TagManager:
   - Salt
   - Fire
   - Thorn
+  - wood
   layers:
   - Default
   - TransparentFX
@@ -24,9 +25,9 @@ TagManager:
   - Player
   - Ice
   - Thorn
-  - 
-  - 
-  - 
+  - Salt
+  - Fire
+  - wood
   - 
   - 
   - 

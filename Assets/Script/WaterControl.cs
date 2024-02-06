@@ -47,7 +47,9 @@ public class WaterControl : MonoBehaviour
             Vector3 pos = myTransform.position;
 
             Instantiate(obj[1], new Vector3(pos.x, pos.y + 0.5f, pos.z), Quaternion.identity);
-            
+            hit.gameObject.tag = "wood"; 
+            hit.gameObject.layer = 13; 
+            Destroy(hit.gameObject.transform.GetChild(0).gameObject);
             Destroy(gameObject);
         }
     }
