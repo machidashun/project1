@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerControl : MonoBehaviour
@@ -191,6 +192,11 @@ public class PlayerControl : MonoBehaviour
             Destroy(hit.gameObject);
             Saltcount++;
             Debug.Log("Saltcount:" + Saltcount);
+        }
+
+        if(hit.gameObject.tag == "Goal")
+        {
+            SceneManager.LoadScene("Goal");
         }
     }
 }
