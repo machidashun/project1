@@ -7,34 +7,42 @@ public class IceControl : MonoBehaviour
 {
     public GameObject[] obj;
     public static bool changeFlag;
+    int[] layers;
 
     void Start()
     {
-        //changeFlag = true;
-        obj = new GameObject[2];
-        obj [0] = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/StageParts/WaterVapor.prefab");
-        obj [1] = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/StageParts/Water.prefab");
+       layers = new int[2];
+       layers[0] = LayerMask.NameToLayer("Ice");
+       layers[1] = LayerMask.NameToLayer("Player");
+       Physics.IgnoreLayerCollision(layers[0], layers[1],true);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && IceControl.changeFlag)
+        if(Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H) && IceControl.changeFlag)
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[0], new Vector3(pos.x, pos.y + 0.5f, pos.z), Quaternion.identity);
-            Destroy(gameObject);
+            Instantiate(obj[0], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            Destroy(transform.parent.gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.H) && IceControl.changeFlag)
+        if(Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown(KeyCode.G) && IceControl.changeFlag)
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
             Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
+
+    /* void OnTriggerStay(Collider hit)
+    {
+        if(hit.gameObject.tag == "player")
+        {
+            Physics.IgnoreLayerCollision(layers[0], layers[1],true);
+        }
+    } */
 }

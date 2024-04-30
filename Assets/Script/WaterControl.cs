@@ -8,14 +8,12 @@ public class WaterControl : MonoBehaviour
     public GameObject[] obj;
     void Start()
     {
-        obj = new GameObject[2];
-        obj [0] = AssetDatabase.LoadAssetAtPath<GameObject> ("Assets/StageParts/Ice.prefab");
-        obj [1] = AssetDatabase.LoadAssetAtPath<GameObject> ("Assets/StageParts/WaterVapor.prefab");
+    
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
@@ -24,12 +22,12 @@ public class WaterControl : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown(KeyCode.G))
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[1], new Vector3(pos.x, pos.y + 0.5f, pos.z), Quaternion.identity);
+            Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -46,7 +44,7 @@ public class WaterControl : MonoBehaviour
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[1], new Vector3(pos.x, pos.y + 0.5f, pos.z), Quaternion.identity);
+            Instantiate(obj[1], new Vector3(pos.x, pos.y , pos.z), Quaternion.identity);
             hit.gameObject.tag = "wood"; 
             hit.gameObject.layer = 13; 
             Destroy(hit.gameObject.transform.GetChild(0).gameObject);
