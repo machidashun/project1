@@ -6,19 +6,23 @@ using UnityEditor;
 public class WaterControl : MonoBehaviour
 {
     public GameObject[] obj;
+
     void Start()
     {
-    
+        transform.parent = GameObject.Find("Stage").transform;
     }
 
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[0], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            //Instantiate(obj[0], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
             Destroy(gameObject);
         }
 
@@ -26,8 +30,11 @@ public class WaterControl : MonoBehaviour
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
+            
+            GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
 
-            Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            //Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -44,7 +51,9 @@ public class WaterControl : MonoBehaviour
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[1], new Vector3(pos.x, pos.y , pos.z), Quaternion.identity);
+            GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
+            
             hit.gameObject.tag = "wood"; 
             hit.gameObject.layer = 13; 
             Destroy(hit.gameObject.transform.GetChild(0).gameObject);

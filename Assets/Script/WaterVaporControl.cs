@@ -14,6 +14,8 @@ public class WaterVaporControl : MonoBehaviour
         myTransform = this.transform;
         pos = this.transform.position;
         InvokeRepeating("Rise",0,0.01f);
+        transform.parent = GameObject.Find("Stage").transform;
+        
     }
 
     void Update()
@@ -22,8 +24,8 @@ public class WaterVaporControl : MonoBehaviour
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
-
-            Instantiate(obj[0],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
             Destroy(gameObject);
         }
 
@@ -32,7 +34,9 @@ public class WaterVaporControl : MonoBehaviour
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
-            Instantiate(obj[1],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
+            //Instantiate(obj[1],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
             Destroy(gameObject);
         }
     }
@@ -46,11 +50,11 @@ public class WaterVaporControl : MonoBehaviour
         
     }
 
-   void OnCollisionEnter(Collision hit)
+   /* void OnCollisionEnter(Collision hit)
     {
         if (hit.gameObject.tag == "Ceiling")
         {
             CancelInvoke("Rise");
         }
-    }
+    } */
 }

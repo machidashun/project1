@@ -16,6 +16,9 @@ TagManager:
   - Goal
   - Ceiling
   - IceDummy
+  - ElectricityWater
+  - SavePoint
+  - Stage
   layers:
   - Default
   - TransparentFX
@@ -31,7 +34,7 @@ TagManager:
   - Salt
   - Fire
   - wood
-  - 
+  - icethatdoesn'tmelt
   - 
   - 
   - 

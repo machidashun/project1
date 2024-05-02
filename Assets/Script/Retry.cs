@@ -5,10 +5,45 @@ using UnityEngine.SceneManagement;
 public class Retry : MonoBehaviour
 {
     float resettime;
+    public GameObject[] obj;
+    public static bool[] saveNumber = {false,false,false};
+    //SavePoint savePoint;
+
+    private void Awake()
+    {
+        if(saveNumber[2])
+        {
+            GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = false;
+            GameObject.FindWithTag("Player").gameObject.transform.position = obj[2].gameObject.transform.position;
+            //GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
+            Debug.Log(GameObject.FindWithTag("Player").gameObject.transform.position + " == " + obj[2].gameObject.transform.position);
+        }
+        else if(saveNumber[1])
+        {
+            Debug.Log(2);
+            GameObject.FindWithTag("Player").gameObject.transform.position = obj[1].gameObject.transform.position;
+        }
+        else if(saveNumber[0])
+        {Debug.Log(3);
+            GameObject.FindWithTag("Player").gameObject.transform.position = obj[0].gameObject.transform.position;
+        }
+    }
+
+
 
     void Start()
     {
         resettime = 0;
+        GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
+        /* for(int i = 0; i < saveNumber.Length;i++)
+        {
+            if(saveNumber[i])
+            {
+
+            }
+        } */
+
+        
     }
 
     void Update()
@@ -37,6 +72,23 @@ public class Retry : MonoBehaviour
     public void Retrytime()
     {
         CancelInvoke("Retrytime");
-        SceneManager.LoadScene("SampleScene");
+
+        if(Retry.saveNumber[2])
+        {
+           //SceneManager.LoadScene("Goal");
+           SceneManager.LoadScene("SampleScene");
+        }
+        else if(Retry.saveNumber[1])
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        else if(Retry.saveNumber[0])
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }

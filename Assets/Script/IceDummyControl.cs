@@ -8,12 +8,13 @@ public class IceDummyControl : MonoBehaviour
 
     void Start()
     {
-        Invoke("Materialization",0.2f);
+        //Debug.Log(12);
+        Invoke("Materialization",0.5f);
         layers = new int[2];
         layers[0] = LayerMask.NameToLayer("Ice");
         layers[1] = LayerMask.NameToLayer("Player");
+        transform.parent = GameObject.Find("Stage").transform;
     }
-
     
     void OnTriggerStay(Collider hit)
     {
