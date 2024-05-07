@@ -15,12 +15,17 @@ public class SavePoint : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            for(int i = 0; i < saveNumber.Length; i++)
+            if(gameObject.tag == "SavePoint3")
             {
-                if(saveNumber[i])
-                {
-                    Retry.saveNumber[i] = true;
-                }
+                Retry.saveNumber[2] = true; 
+            }
+            else if(gameObject.tag == "SavePoint2")
+            {
+                Retry.saveNumber[1] = true;
+            }
+            else if(gameObject.tag == "SavePoint1")
+            {
+                Retry.saveNumber[0] = true;
             }
         }
     }

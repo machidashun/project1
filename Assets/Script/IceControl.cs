@@ -8,7 +8,8 @@ public class IceControl : MonoBehaviour
     public GameObject[] obj;
     public bool changeFlag;
     public int[] layers;
-
+    Push push;
+    WaterControl waterControl;
     void Start()
     {
         changeFlag = true;
@@ -17,6 +18,7 @@ public class IceControl : MonoBehaviour
         layers[1] = LayerMask.NameToLayer("Player");
         layers[2] = LayerMask.NameToLayer("icethatdoesn'tmelt");
         Physics.IgnoreLayerCollision(layers[0], layers[1],true);
+        push = GameObject.FindWithTag("Push").GetComponent<Push>();
     }
 
     void Update()
@@ -40,16 +42,27 @@ public class IceControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.parent.transform.localScale;
+            waterControl = createobj.GetComponent<WaterControl>();
+
+            if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Right"))
+            {
+                waterControl.InvokeRepeating("Right",0,push.speed);
+            }
+            else if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Left"))
+            {
+                waterControl.InvokeRepeating("Left",0,push.speed);
+            }
+            else if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Up"))
+            {
+                waterControl.InvokeRepeating("Up",0,push.speed);
+            }
+            else if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Under"))
+            {
+                waterControl.InvokeRepeating("Under",0,push.speed);
+            }
             //Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(transform.parent.gameObject);
         }
     }
 
-    /* void OnTriggerStay(Collider hit)
-    {
-        if(hit.gameObject.tag == "player")
-        {
-            Physics.IgnoreLayerCollision(layers[0], layers[1],true);
-        }
-    } */
 }

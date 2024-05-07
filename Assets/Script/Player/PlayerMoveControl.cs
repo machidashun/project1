@@ -57,7 +57,7 @@ public class PlayerMoveControl : MonoBehaviour
     void Update()
     {
         
-       if (ch.isGrounded && Input.GetKeyDown("space"))
+        if (ch.isGrounded && Input.GetKey(KeyCode.Space))
         {
             PlayersPos.y = jumpPower;
         }

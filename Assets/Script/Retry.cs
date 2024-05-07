@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class Retry : MonoBehaviour
 {
     float resettime;
-    public GameObject[] obj;
     public static bool[] saveNumber = {false,false,false};
     //SavePoint savePoint;
 
@@ -14,18 +13,16 @@ public class Retry : MonoBehaviour
         if(saveNumber[2])
         {
             GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = false;
-            GameObject.FindWithTag("Player").gameObject.transform.position = obj[2].gameObject.transform.position;
+            GameObject.FindWithTag("Player").gameObject.transform.position = GameObject.FindWithTag("SavePoint3").gameObject.transform.position;
             //GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
-            Debug.Log(GameObject.FindWithTag("Player").gameObject.transform.position + " == " + obj[2].gameObject.transform.position);
         }
         else if(saveNumber[1])
         {
-            Debug.Log(2);
-            GameObject.FindWithTag("Player").gameObject.transform.position = obj[1].gameObject.transform.position;
+            GameObject.FindWithTag("Player").gameObject.transform.position = GameObject.FindWithTag("SavePoint2").gameObject.transform.position;
         }
         else if(saveNumber[0])
-        {Debug.Log(3);
-            GameObject.FindWithTag("Player").gameObject.transform.position = obj[0].gameObject.transform.position;
+        {
+            GameObject.FindWithTag("Player").gameObject.transform.position = GameObject.FindWithTag("SavePoint1").gameObject.transform.position;
         }
     }
 
@@ -73,7 +70,7 @@ public class Retry : MonoBehaviour
     {
         CancelInvoke("Retrytime");
 
-        if(Retry.saveNumber[2])
+        /* if(Retry.saveNumber[2])
         {
            //SceneManager.LoadScene("Goal");
            SceneManager.LoadScene("SampleScene");
@@ -88,7 +85,7 @@ public class Retry : MonoBehaviour
         }
         else
         {
+        } */
             SceneManager.LoadScene("SampleScene");
-        }
     }
 }

@@ -17,8 +17,12 @@ TagManager:
   - Ceiling
   - IceDummy
   - ElectricityWater
-  - SavePoint
   - Stage
+  - SavePoint1
+  - SavePoint2
+  - SavePoint3
+  - SavePoint
+  - Push
   layers:
   - Default
   - TransparentFX
@@ -35,7 +39,7 @@ TagManager:
   - Fire
   - wood
   - icethatdoesn'tmelt
-  - 
+  - Push
   - 
   - 
   - 

@@ -5,7 +5,9 @@ using UnityEngine;
 public class IceDummyControl : MonoBehaviour
 {
     int[] layers;
-
+    //private Vector3 Pos;
+    private Vector3 movePos;
+    
     void Start()
     {
         //Debug.Log(12);
@@ -20,7 +22,6 @@ public class IceDummyControl : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            Debug.Log(12);
             CancelInvoke("Materialization");
         }
     }
@@ -33,8 +34,53 @@ public class IceDummyControl : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider hit)
+    {
+        if (hit.gameObject.tag == "Ground")
+        {
+            CancelInvoke("Right");
+            CancelInvoke("Left");
+            CancelInvoke("Up");
+            CancelInvoke("Under");
+        }
+    }
+
     void Materialization()
     {   
         Physics.IgnoreLayerCollision(layers[0], layers[1],false);
+    }
+
+    public void Move(Vector3 pos)//Pushオブジェクトの位置へ移動
+    {
+        //transform.position = pos;
+        //Vector3.Lerp(transform.position, pos, 1);
+    }
+
+    public void Right()//→
+    {
+        movePos = transform.position;
+        movePos.x += 0.05f;
+        transform.position = movePos;
+    }
+
+    public void Left()//←
+    {
+        movePos = transform.position;
+        movePos.x -= 0.05f;
+        transform.position = movePos;
+    }
+
+    public void Up()//↑
+    {
+        movePos = transform.position;
+        movePos.y += 0.05f;
+        transform.position = movePos;
+    }
+
+    public void Under()//↓
+    {
+        movePos = transform.position;
+        movePos.y -= 0.05f;
+        transform.position = movePos;
     }
 }
