@@ -50,11 +50,11 @@ public class WaterVaporControl : MonoBehaviour
         
     }
 
-   /* void OnCollisionEnter(Collision hit)
+   void OnCollisionEnter(Collision hit)
     {
-        if (hit.gameObject.tag == "Ceiling")
+        if (hit.gameObject.tag == "Ventilationfan")
         {
-            CancelInvoke("Rise");
+            Destroy(gameObject);
         }
-    } */
+    }
 }

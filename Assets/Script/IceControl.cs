@@ -42,7 +42,7 @@ public class IceControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.parent.transform.localScale;
-            waterControl = createobj.GetComponent<WaterControl>();
+            /* waterControl = createobj.GetComponent<WaterControl>();
 
             if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Right"))
             {
@@ -59,7 +59,7 @@ public class IceControl : MonoBehaviour
             else if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Under"))
             {
                 waterControl.InvokeRepeating("Under",0,push.speed);
-            }
+            } */
             //Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(transform.parent.gameObject);
         }

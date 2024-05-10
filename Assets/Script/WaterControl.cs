@@ -27,24 +27,28 @@ public class WaterControl : MonoBehaviour
             GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
 
-            push = GameObject.FindWithTag("Push").GetComponent<Push>();
+            /* push = GameObject.FindWithTag("Push").GetComponent<Push>();
             
             if(IsInvoking("Right"))
-            {
+            { 
+                createobj.GetComponent<IceDummyControl>().Layersch();
                 createobj.GetComponent<IceDummyControl>().InvokeRepeating("Right",0,push.speed);
             }
             else if(IsInvoking("Left"))
             {
+                createobj.GetComponent<IceDummyControl>().Layersch();
                 createobj.GetComponent<IceDummyControl>().InvokeRepeating("Left",0,push.speed);
             }
             else if(IsInvoking("Up"))
             {
+                createobj.GetComponent<IceDummyControl>().Layersch();
                 createobj.GetComponent<IceDummyControl>().InvokeRepeating("Up",0,push.speed);
             }
             else if(IsInvoking("Under"))
             {
+                createobj.GetComponent<IceDummyControl>().Layersch();
                 createobj.GetComponent<IceDummyControl>().InvokeRepeating("Under",0,push.speed);
-            }
+            } */
 
             Destroy(gameObject);
         }
@@ -83,6 +87,17 @@ public class WaterControl : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if (hit.gameObject.tag == "Fireball")
+        {
+            Transform myTransform = this.transform;
+            Vector3 pos = myTransform.position;
+
+            GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            createobj.transform.localScale = transform.localScale;
+        
+            Destroy(gameObject);
+        }
+
         if (hit.gameObject.tag == "Ground")
         {
             rb.useGravity = true;
@@ -95,7 +110,7 @@ public class WaterControl : MonoBehaviour
 
     public void Move(Vector3 pos)//Pushオブジェクトの位置へ移動
     {
-        //transform.position = pos;
+        transform.position = pos;
         //Vector3.Lerp(transform.position, pos, 0.3f);
     }
 

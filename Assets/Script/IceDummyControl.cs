@@ -4,45 +4,58 @@ using UnityEngine;
 
 public class IceDummyControl : MonoBehaviour
 {
-    int[] layers;
+    public int[] layers;
     //private Vector3 Pos;
     private Vector3 movePos;
     
     void Start()
     {
         //Debug.Log(12);
-        Invoke("Materialization",0.5f);
+        Invoke("Materialization",0.2f);
         layers = new int[2];
         layers[0] = LayerMask.NameToLayer("Ice");
         layers[1] = LayerMask.NameToLayer("Player");
         transform.parent = GameObject.Find("Stage").transform;
     }
     
-    void OnTriggerStay(Collider hit)
+    /* void OnTriggerStay(Collider hit)
     {
         if(hit.gameObject.tag == "Player")
         {
             CancelInvoke("Materialization");
         }
-    }
+    } */
 
     void OnTriggerExit(Collider hit)
     {
         if(hit.gameObject.tag == "Player")
         {
+            Debug.Log(12);
             Physics.IgnoreLayerCollision(layers[0], layers[1],false);
+            /*
+            CancelInvoke("Right");
+            CancelInvoke("Left");
+            CancelInvoke("Up");
+            CancelInvoke("Under"); */
         }
     }
 
     void OnTriggerEnter(Collider hit)
     {
-        if (hit.gameObject.tag == "Ground")
+        if(hit.gameObject.tag == "Player")
         {
+            Debug.Log(11);
+            CancelInvoke("Materialization");
+        }
+        
+        /* if (hit.gameObject.tag == "Ground")
+        {
+            Materialization();
             CancelInvoke("Right");
             CancelInvoke("Left");
             CancelInvoke("Up");
             CancelInvoke("Under");
-        }
+        } */
     }
 
     void Materialization()
@@ -56,8 +69,14 @@ public class IceDummyControl : MonoBehaviour
         //Vector3.Lerp(transform.position, pos, 1);
     }
 
+    public void Layersch()
+    {
+        //Physics.IgnoreLayerCollision(layers[0], layers[1],true);
+    }
+
     public void Right()//→
     {
+        Layersch();
         movePos = transform.position;
         movePos.x += 0.05f;
         transform.position = movePos;
@@ -65,6 +84,7 @@ public class IceDummyControl : MonoBehaviour
 
     public void Left()//←
     {
+        Layersch();
         movePos = transform.position;
         movePos.x -= 0.05f;
         transform.position = movePos;
@@ -72,6 +92,7 @@ public class IceDummyControl : MonoBehaviour
 
     public void Up()//↑
     {
+        Layersch();
         movePos = transform.position;
         movePos.y += 0.05f;
         transform.position = movePos;
@@ -79,6 +100,7 @@ public class IceDummyControl : MonoBehaviour
 
     public void Under()//↓
     {
+        Layersch();
         movePos = transform.position;
         movePos.y -= 0.05f;
         transform.position = movePos;

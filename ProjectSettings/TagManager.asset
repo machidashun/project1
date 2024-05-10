@@ -23,6 +23,11 @@ TagManager:
   - SavePoint3
   - SavePoint
   - Push
+  - Ventilationfan
+  - Fireball
+  - Electricity
+  - Wiring
+  - door
   layers:
   - Default
   - TransparentFX
@@ -40,10 +45,10 @@ TagManager:
   - wood
   - icethatdoesn'tmelt
   - Push
-  - 
-  - 
-  - 
-  - 
+  - Electricity
+  - ElectricityWater
+  - Wiring
+  - door
   - 
   - 
   - 

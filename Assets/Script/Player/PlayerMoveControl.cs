@@ -85,24 +85,12 @@ public class PlayerMoveControl : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (hit.gameObject.tag == "Oil")
+        if(hit.gameObject.tag == "Oil" || hit.gameObject.tag == "Fire" || hit.gameObject.tag == "Fireball" || hit.gameObject.tag == "Thorn" || hit.gameObject.tag == "Electricity" || hit.gameObject.tag == "ElectricityWater")
         {
             Destroy(gameObject);
             retry.REtry();
         }
-
-        if (hit.gameObject.tag == "Fire")
-        {
-            Destroy(gameObject);
-            retry.REtry();
-        }
-
-        if (hit.gameObject.tag == "Thorn")
-        {
-            Destroy(gameObject);
-            retry.REtry();
-        }
-
+        
         if (hit.gameObject.tag == "Salt")
         {
             Destroy(hit.gameObject);

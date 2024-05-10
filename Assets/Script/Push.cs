@@ -62,16 +62,16 @@ public class Push : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider hit)
+    /* void OnTriggerEnter(Collider hit)
     {
         if(hit.gameObject.tag == "IceDummy")
         {
             hit.gameObject.GetComponent<IceDummyControl>().Move(transform.position);
 
-            if(gameObject.GetComponent<CapsuleCollider/* MeshCollider */>().enabled)
+            if(gameObject.GetComponent<CapsuleCollider>().enabled)
             {
                 Invoke("MeshON",0.5f);
-                gameObject.GetComponent<CapsuleCollider/* MeshCollider */>().enabled = false;
+                gameObject.GetComponent<CapsuleCollider>().enabled = false;
             }
 
             if(direction[0])
@@ -107,7 +107,7 @@ public class Push : MonoBehaviour
                 hit.gameObject.GetComponent<IceDummyControl>().InvokeRepeating("Under",0,speed);
             }
         }
-    }
+    } */
 
     void MeshON()
     {
