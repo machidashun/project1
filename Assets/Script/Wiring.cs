@@ -37,10 +37,10 @@ public class Wiring : MonoBehaviour
             Change();
         }
 
-        if(hit.gameObject.tag == "Electricity" && hit.gameObject == false)
+        /* if(hit.gameObject.tag == "Electricity" && hit.gameObject == false)
         {
-            Debug.Log(12);
-        }
+    
+        } */
 
         if(hit.gameObject.tag == "IceDummy" && situation || hit.gameObject.tag == "WaterVapor" && situation)
         {

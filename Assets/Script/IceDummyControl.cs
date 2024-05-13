@@ -10,7 +10,7 @@ public class IceDummyControl : MonoBehaviour
     
     void Start()
     {
-        //Debug.Log(12);
+
         Invoke("Materialization",0.2f);
         layers = new int[2];
         layers[0] = LayerMask.NameToLayer("Ice");
@@ -30,7 +30,6 @@ public class IceDummyControl : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            Debug.Log(12);
             Physics.IgnoreLayerCollision(layers[0], layers[1],false);
             /*
             CancelInvoke("Right");
@@ -44,7 +43,6 @@ public class IceDummyControl : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            Debug.Log(11);
             CancelInvoke("Materialization");
         }
         

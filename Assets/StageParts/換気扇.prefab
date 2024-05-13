@@ -327,6 +327,7 @@ GameObject:
   - component: {fileID: 4036200483431689695}
   - component: {fileID: 4578418684983172329}
   - component: {fileID: 3695386394961966970}
+  - component: {fileID: 4338493707376648394}
   m_Layer: 0
   m_Name: "\u63DB\u6C17\u6247"
   m_TagString: Ventilationfan
@@ -389,6 +390,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.68, y: 1.88, z: 2.92}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4338493707376648394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3695386394961966949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmove: 000000
+  xrange:
+  - 0
+  - 0
+  - 0
+  ymove: 000000
+  yrange:
+  - 0
+  - 0
+  - 0
 --- !u!1 &7754375982351033571
 GameObject:
   m_ObjectHideFlags: 0

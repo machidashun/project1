@@ -18,7 +18,7 @@ public class IceControl : MonoBehaviour
         layers[1] = LayerMask.NameToLayer("Player");
         layers[2] = LayerMask.NameToLayer("icethatdoesn'tmelt");
         Physics.IgnoreLayerCollision(layers[0], layers[1],true);
-        push = GameObject.FindWithTag("Push").GetComponent<Push>();
+        if(GameObject.FindWithTag("Push")) push = GameObject.FindWithTag("Push").GetComponent<Push>();
     }
 
     void Update()

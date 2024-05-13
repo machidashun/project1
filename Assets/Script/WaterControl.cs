@@ -125,7 +125,6 @@ public class WaterControl : MonoBehaviour
 
     public void Left()//←
     {
-        
         rb.useGravity = false;
         movePos = transform.position;
         movePos.x -= 0.05f;
@@ -142,7 +141,6 @@ public class WaterControl : MonoBehaviour
 
     public void Under()//↓
     {
-        
         rb.useGravity = false;
         movePos = transform.position;
         movePos.y -= 0.05f;

@@ -144,7 +144,7 @@ namespace Muryotaisu
                 if (Input.GetKey("left") || Input.GetKey("a")) 
                 {
                     float angleDiff = Mathf.DeltaAngle(transform.localEulerAngles.y, 90);
-                    //Debug.Log($"left: {angleDiff}");
+                    
                     if (angleDiff == 0) 
                     {
                         controller.Move (this.gameObject.transform.forward * speed * Time.deltaTime);

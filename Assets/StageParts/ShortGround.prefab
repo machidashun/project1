@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3953347382137283242}
   - component: {fileID: 3953347382137283237}
   - component: {fileID: 3953347382137283236}
+  - component: {fileID: 4651099449963693547}
   m_Layer: 0
   m_Name: ShortGround
   m_TagString: Ground
@@ -97,3 +98,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4651099449963693547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953347382137283239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmove: 000000
+  xrange:
+  - 0
+  - 0
+  - 0
+  ymove: 000000
+  yrange:
+  - 0
+  - 0
+  - 0

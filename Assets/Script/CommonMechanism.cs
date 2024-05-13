@@ -43,7 +43,6 @@ public class CommonMechanism : MonoBehaviour
                 xmove[0] = false;
                 xmove[1] = true;
             }
-            Debug.Log(movePos.x+ xrange[0]);
         }
         else if(xmove[1])
         {
@@ -69,7 +68,6 @@ public class CommonMechanism : MonoBehaviour
                 ymove[0] = false;
                 ymove[1] = true;
             }
-            Debug.Log(movePos.y+ yrange[0]);
         }
         else if(ymove[1])
         {
