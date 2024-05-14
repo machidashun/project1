@@ -12,11 +12,6 @@ public class Wiring : MonoBehaviour
         situation = false;
     }
 
-    void Update()
-    {
-        
-    }
-
     void Change()
     {
         if(situation)
@@ -31,21 +26,25 @@ public class Wiring : MonoBehaviour
 
     void OnTriggerStay(Collider hit)
     { 	
-        if(hit.gameObject.tag == "Electricity" && !situation)
+        if(hit.gameObject.tag == "Electricity" && !situation || hit.gameObject.tag == "Wiring" && !situation)
         {
             situation = true;
             Change();
         }
-
-        /* if(hit.gameObject.tag == "Electricity" && hit.gameObject == false)
-        {
-    
-        } */
-
+        
         if(hit.gameObject.tag == "IceDummy" && situation || hit.gameObject.tag == "WaterVapor" && situation)
         {
             situation = false;
             Change();
+        }
+
+        if(hit.gameObject.tag == "Water" && situation)
+        {
+            Vector3 pos = hit.gameObject.transform.position;
+            GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+            createobj.transform.localScale = hit.gameObject.transform.localScale;
+            //gameObject.GetComponent<Electricity>().enabled = false;
+            Destroy(hit.gameObject);
         }
     }
 
@@ -57,4 +56,14 @@ public class Wiring : MonoBehaviour
             Change();   
         }
     }
+
+    /* void OnBecameVisible()
+    {
+        gameObject.SetActive(true);
+    }
+    
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }     */
 }

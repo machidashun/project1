@@ -8,11 +8,26 @@ public class CameraMove : MonoBehaviour
     private Vector3 Camera;
  
 	// Use this for initialization
-	void Start () {
+	void Start () 
+        {
         
         player = GameObject.Find("Muryotaisu");
-        Camera = transform.position - player.transform.position;
- 
+        
+                if(Retry.saveNumber[2])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint3").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[1])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint2").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[0])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint1").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                }
+
+                Camera = transform.position - player.transform.position;
+        
 	}
 
 	void Update () {

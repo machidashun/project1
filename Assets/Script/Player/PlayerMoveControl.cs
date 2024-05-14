@@ -26,8 +26,7 @@ public class PlayerMoveControl : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        
+    {   
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward,new Vector3(1, 0, 1)).normalized;
         Vector3 moveX = Camera.main.transform.right * Input.GetAxis("Horizontal") * moveSpeed;
              

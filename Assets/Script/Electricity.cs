@@ -25,8 +25,8 @@ public class Electricity : MonoBehaviour
             {
                 Vector3 pos = hit.gameObject.transform.position;
                 GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
-                createobj.transform.localScale = transform.localScale;
-                gameObject.GetComponent<Electricity>().enabled = false;
+                createobj.transform.localScale = hit.gameObject.transform.localScale;
+                //gameObject.GetComponent<Electricity>().enabled = false;
                 Destroy(hit.gameObject);
             }
         }

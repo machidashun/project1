@@ -17,7 +17,10 @@ public class WaterControl : MonoBehaviour
 
     void Update()
     {
-        
+        /* Debug.Log(IsInvoking("Right"));
+        Debug.Log(IsInvoking("Left"));
+        Debug.Log(IsInvoking("Up"));
+        Debug.Log(IsInvoking("Under")); */
         if (Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
         {
             Transform myTransform = this.transform;
@@ -94,7 +97,7 @@ public class WaterControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
-        
+            Destroy(hit.gameObject.transform.parent.gameObject);
             Destroy(gameObject);
         }
 
@@ -146,4 +149,14 @@ public class WaterControl : MonoBehaviour
         movePos.y -= 0.05f;
         transform.position = movePos;
     }
+
+    /* void OnBecameVisible()
+    {
+        gameObject.SetActive(true);
+    }
+    
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }     */
 }
