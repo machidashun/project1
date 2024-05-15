@@ -49,8 +49,8 @@ MonoBehaviour:
   - {fileID: 4800376317604829866, guid: 1cedfdfa894781d449805754194b9f80, type: 3}
   - {fileID: 2739033104637899782, guid: db570a4ee616e1848a80722c7b4bf86d, type: 3}
   - {fileID: 7867980320832149349, guid: 013fc1154243c264481b679d5b9a9828, type: 3}
-  flag: 000001
-  direction: 00000001
+  flag: 000000
+  direction: 00000000
   count:
   - 1
   - 0.01

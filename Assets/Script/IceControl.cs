@@ -30,7 +30,7 @@ public class IceControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.parent.transform.localScale;
-
+            createobj.name = transform.parent.gameObject.name;
             //Instantiate(obj[0], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(transform.parent.gameObject);
         }
@@ -42,6 +42,7 @@ public class IceControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.parent.transform.localScale;
+            createobj.name = transform.parent.gameObject.name;
             /* waterControl = createobj.GetComponent<WaterControl>();
 
             if(transform.parent.gameObject.GetComponent<IceDummyControl>().IsInvoking("Right"))

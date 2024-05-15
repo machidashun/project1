@@ -14,8 +14,14 @@ public class Create : MonoBehaviour
     GameObject createobj;
     private Vector3 movePos;
     private Rigidbody rb;
+
+    public static int num;
+    private int number;
     void Start()
     {
+        Create.num += 1;
+        number = Create.num;
+        Debug.Log(number);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
         if(flag[0])
@@ -152,13 +158,22 @@ public class Create : MonoBehaviour
         }
         else if(flag[2])
         {
-            if(!createobj)
+            if(GameObject.Find("Create" + number))
+            {
+                if(!GameObject.Find("Create" + number).GetComponent<DestroyControl>() && GameObject.Find("Create" + number).tag == "Water")
+                {
+                    GameObject.Find("Create" + number).AddComponent<DestroyControl>();    
+                }
+            }
+            else if(!createobj)
             {
                 Vector3 pos = transform.position;
                 createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 createobj.transform.localScale = transform.localScale;
                 createobj.AddComponent<DestroyControl>();
+                createobj.name = "Create" + number;
             }
+            Debug.Log(number);
         }
     }
 

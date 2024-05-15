@@ -29,6 +29,7 @@ public class WaterControl : MonoBehaviour
             //Instantiate(obj[0], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
+            createobj.name = gameObject.name;
 
             /* push = GameObject.FindWithTag("Push").GetComponent<Push>();
             
@@ -63,6 +64,7 @@ public class WaterControl : MonoBehaviour
             
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
+            createobj.name = gameObject.name;
 
             //Instantiate(obj[1], new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             Destroy(gameObject);
@@ -83,7 +85,7 @@ public class WaterControl : MonoBehaviour
 
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
-            
+            createobj.name = gameObject.name;
             hit.gameObject.tag = "wood"; 
             hit.gameObject.layer = 13; 
             Destroy(hit.gameObject.transform.GetChild(0).gameObject);
@@ -94,9 +96,9 @@ public class WaterControl : MonoBehaviour
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
-
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
+            createobj.name = gameObject.name;
             Destroy(hit.gameObject.transform.parent.gameObject);
             Destroy(gameObject);
         }

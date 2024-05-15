@@ -26,6 +26,7 @@ public class WaterVaporControl : MonoBehaviour
             Vector3 pos = myTransform.position;
             GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
+            createobj.name = gameObject.name;
             Destroy(gameObject);
         }
 
@@ -37,6 +38,7 @@ public class WaterVaporControl : MonoBehaviour
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
             createobj.transform.localScale = transform.localScale;
             //Instantiate(obj[1],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
+            createobj.name = gameObject.name;
             Destroy(gameObject);
         }
     }
