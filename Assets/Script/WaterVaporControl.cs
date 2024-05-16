@@ -14,7 +14,7 @@ public class WaterVaporControl : MonoBehaviour
         myTransform = this.transform;
         pos = this.transform.position;
         InvokeRepeating("Rise",0,0.01f);
-        transform.parent = GameObject.Find("Stage").transform;
+        //transform.parent = GameObject.Find("Stage").transform;
         
     }
 

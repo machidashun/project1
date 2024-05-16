@@ -21,7 +21,6 @@ public class Create : MonoBehaviour
     {
         Create.num += 1;
         number = Create.num;
-        Debug.Log(number);
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
 
         if(flag[0])
@@ -53,7 +52,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Right",0,count[1]);
                 }
@@ -63,7 +62,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Left",0,count[1]);
                 }
@@ -73,7 +72,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Up",0,count[1]);
                 }
@@ -83,8 +82,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
-
+                    rb.useGravity = false;
                     InvokeRepeating("Under",0,count[1]);
                 }
                 else
@@ -93,7 +91,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                 }
                                
                 //createobj.transform.localScale = transform.localScale;
@@ -112,7 +110,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Right",0,count[1]);
                 }
@@ -122,7 +120,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Left",0,count[1]);
                 }
@@ -132,7 +130,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                     
                     InvokeRepeating("Up",0,count[1]);
                 }
@@ -142,8 +140,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
-
+                    rb.useGravity = false;
                     InvokeRepeating("Under",0,count[1]);
                 }
                 else
@@ -152,7 +149,7 @@ public class Create : MonoBehaviour
                 	
                     rb = createobj.AddComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
-                    rb.isKinematic = true;
+                    rb.useGravity = false;
                 }
             }
         }
@@ -168,19 +165,81 @@ public class Create : MonoBehaviour
             else if(!createobj)
             {
                 Vector3 pos = transform.position;
+                if(direction[0])//→
+                {
+                    createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+                	
+                    rb = createobj.GetComponent<Rigidbody>();
+                    createobj.AddComponent<DestroyControl>();
+                    rb.useGravity = false;
+                    createobj.name = "Create" + number;
+                    
+                    InvokeRepeating("Right",0,count[1]);
+                }
+                else if(direction[1])//←
+                {
+                    createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+                	
+                    rb = createobj.GetComponent<Rigidbody>();
+                    createobj.AddComponent<DestroyControl>();
+                    rb.useGravity = false;
+                    createobj.name = "Create" + number;
+                    
+                    InvokeRepeating("Left",0,count[1]);
+                }
+                else if(direction[2])//↑
+                {
+                    createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+                	
+                    rb = createobj.GetComponent<Rigidbody>();
+                    createobj.AddComponent<DestroyControl>();
+                    rb.useGravity = false;
+                    createobj.name = "Create" + number;
+                    
+                    InvokeRepeating("Up",0,count[1]);
+                }
+                else if(direction[3])//↓
+                {
+                    createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+                	
+                    rb = createobj.GetComponent<Rigidbody>();
+                    createobj.AddComponent<DestroyControl>();
+                    rb.useGravity = false;
+                    createobj.name = "Create" + number;
+                    InvokeRepeating("Under",0,count[1]);
+                }
+                else
+                {
+                    createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+                	
+                    rb = createobj.GetComponent<Rigidbody>();
+                    createobj.AddComponent<DestroyControl>();
+                    rb.useGravity = false;
+                    createobj.name = "Create" + number;
+                }
+            }
+            /* if(GameObject.Find("Create" + number))
+            {
+                if(!GameObject.Find("Create" + number).GetComponent<DestroyControl>() && GameObject.Find("Create" + number).tag == "Water")
+                {
+                    GameObject.Find("Create" + number).AddComponent<DestroyControl>();    
+                }
+            }
+            else if(!createobj)
+            {
+                Vector3 pos = transform.position;
                 createobj = Instantiate(createObject[2],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 createobj.transform.localScale = transform.localScale;
                 createobj.AddComponent<DestroyControl>();
                 createobj.name = "Create" + number;
-            }
-            Debug.Log(number);
+            } */
         }
     }
 
-    void Falling()
+    /* void Falling()
     {
         rb.isKinematic = false;
-    }
+    } */
 
     public void Right()//→
     {

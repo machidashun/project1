@@ -11,8 +11,9 @@ public class WaterControl : MonoBehaviour
     Push push;
     void Start()
     {
-        transform.parent = GameObject.Find("Stage").transform;
+        //transform.parent = GameObject.Find("Stage").transform;
         rb = GetComponent<Rigidbody>();
+        //rb.isKinematic = true;
     }
 
     void Update()
@@ -105,7 +106,8 @@ public class WaterControl : MonoBehaviour
 
         if (hit.gameObject.tag == "Ground")
         {
-            rb.useGravity = true;
+            //rb.useGravity = true;
+            //rb.useGravity = false;
             CancelInvoke("Right");
             CancelInvoke("Left");
             CancelInvoke("Up");
@@ -152,13 +154,13 @@ public class WaterControl : MonoBehaviour
         transform.position = movePos;
     }
 
-    /* void OnBecameVisible()
+  /*   void OnBecameVisible()//見える
     {
-        gameObject.SetActive(true);
+        rb.isKinematic = false;
     }
     
-    void OnBecameInvisible()
+    void OnBecameInvisible()//見えない
     {
-        gameObject.SetActive(false);
-    }     */
+        rb.isKinematic = true;
+    } */    
 }

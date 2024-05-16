@@ -15,7 +15,7 @@ public class IceDummyControl : MonoBehaviour
         layers = new int[2];
         layers[0] = LayerMask.NameToLayer("Ice");
         layers[1] = LayerMask.NameToLayer("Player");
-        transform.parent = GameObject.Find("Stage").transform;
+        //transform.parent = GameObject.Find("Stage").transform;
     }
     
     /* void OnTriggerStay(Collider hit)
