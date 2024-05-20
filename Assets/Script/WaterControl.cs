@@ -106,7 +106,7 @@ public class WaterControl : MonoBehaviour
 
         if (hit.gameObject.tag == "Ground")
         {
-            //rb.useGravity = true;
+            rb.useGravity = true;
             //rb.useGravity = false;
             CancelInvoke("Right");
             CancelInvoke("Left");

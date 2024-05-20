@@ -85,6 +85,6 @@ public class Retry : MonoBehaviour
         else
         {
         } */
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("tset");
     }
 }
