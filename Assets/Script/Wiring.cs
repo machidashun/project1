@@ -38,11 +38,13 @@ public class Wiring : MonoBehaviour
             Change();
         }
 
-        if(hit.gameObject.tag == "Water" && situation)
+        if(hit.gameObject.tag == "Water" && situation && hit.gameObject.GetComponent<WaterControl>().electrification)
         {
+            hit.gameObject.GetComponent<WaterControl>().electrification = false;
             Vector3 pos = hit.gameObject.transform.position;
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
             createobj.transform.localScale = hit.gameObject.transform.localScale;
+            createobj.name = hit.gameObject.name;
             //gameObject.GetComponent<Electricity>().enabled = false;
             Destroy(hit.gameObject);
         }

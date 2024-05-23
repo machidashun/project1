@@ -8,7 +8,6 @@ public class WaterVaporControl : MonoBehaviour
     public GameObject[] obj;
     Transform myTransform;
     Vector3 pos;
-
     void Start()
     {
         myTransform = this.transform;
@@ -57,6 +56,11 @@ public class WaterVaporControl : MonoBehaviour
         if (hit.gameObject.tag == "Ventilationfan")
         {
             Destroy(gameObject);
+        }
+
+        if (hit.gameObject.tag == "Ground" && hit.gameObject.GetComponent<StatusControl>().statu[1] == true)
+        {
+            CancelInvoke("Rise");
         }
     }
 }

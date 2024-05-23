@@ -8,9 +8,11 @@ public class WaterControl : MonoBehaviour
     public GameObject[] obj;
     private Vector3 movePos;
     public Rigidbody rb;
+    public bool electrification;
     Push push;
     void Start()
     {
+        electrification = true;
         //transform.parent = GameObject.Find("Stage").transform;
         rb = GetComponent<Rigidbody>();
         //rb.isKinematic = true;

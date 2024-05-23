@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
-public class PlayerMoveControl : MonoBehaviour
+public class PlayerMoveControlRb : MonoBehaviour
 {
     public  float moveSpeed;
     public  float jumpPower;
@@ -15,11 +15,14 @@ public class PlayerMoveControl : MonoBehaviour
     public bool moveflag = false;
     public int Saltcount;
     Retry retry;
+    bool isGrounded;
 
     void Start()
     {
+        isGrounded = false;
         moveflag = false;
         ch = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         Saltcount = 0;
         animator = GetComponent<Animator>();
@@ -29,6 +32,7 @@ public class PlayerMoveControl : MonoBehaviour
 
     void FixedUpdate()
     {   
+        Gravity();
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward,new Vector3(1, 0, 1)).normalized;
         movepos = Camera.main.transform.right * Input.GetAxis("Horizontal") * moveSpeed;
         
@@ -50,6 +54,17 @@ public class PlayerMoveControl : MonoBehaviour
         }
         else
         {
+            if(isGrounded)
+            {
+                PlayersPos = movepos;
+            }
+            else
+            {
+                
+            }
+
+            //rb.velocity = movepos;
+
         }
         transform.LookAt(transform.position + movepos);
     }
@@ -61,12 +76,38 @@ public class PlayerMoveControl : MonoBehaviour
         {
             Debug.Log(Input.GetAxis("Horizontal"));
         } */
-        
+        Debug.Log(isGrounded);
         if (ch.enabled && ch.isGrounded && Input.GetKey(KeyCode.Space))
         {
             PlayersPos.y = jumpPower;
         }
+
+        if (!ch.enabled && isGrounded && Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
+        }
+
         if(ch.enabled && moveflag)ch.Move(PlayersPos * Time.deltaTime);
+        if(!ch.enabled && moveflag)rb.velocity = movepos;
+    }
+
+    void Gravity()
+    {
+        if(ch.enabled)
+        {
+            rb.AddForce(new Vector3(0, -9.8f, 0));
+        }
+        else
+        {
+            if(isGrounded)
+            {
+                rb.AddForce(new Vector3(0, -9.8f, 0));
+            }
+            else
+            {
+                rb.AddForce(new Vector3(0, -300, 0));
+            }
+        }
     }
 
     void Animation()
@@ -100,6 +141,11 @@ public class PlayerMoveControl : MonoBehaviour
             {
                 //transform.parent = hit.gameObject.transform;
             }
+            
+            if(!isGrounded)
+            {
+                isGrounded = true;
+            }
         }
     }
 
@@ -107,6 +153,8 @@ public class PlayerMoveControl : MonoBehaviour
     {
         if(hit.gameObject.tag == "Ground")
         {
+            isGrounded = false;
+            
             if(hit.gameObject.GetComponent<StatusControl>().statu[0] == true)
             {
                 //transform.parent = null;

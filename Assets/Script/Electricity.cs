@@ -21,11 +21,13 @@ public class Electricity : MonoBehaviour
     {
         if(gameObject.GetComponent<Electricity>().enabled)
         {
-            if(hit.gameObject.tag == "Water")
+            if(hit.gameObject.tag == "Water" && hit.gameObject.GetComponent<WaterControl>().electrification) 
             {
+                hit.gameObject.GetComponent<WaterControl>().electrification = false;
                 Vector3 pos = hit.gameObject.transform.position;
                 GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 createobj.transform.localScale = hit.gameObject.transform.localScale;
+                createobj.name = hit.gameObject.name;
                 //gameObject.GetComponent<Electricity>().enabled = false;
                 Destroy(hit.gameObject);
             }

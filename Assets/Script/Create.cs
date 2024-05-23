@@ -118,7 +118,7 @@ public class Create : MonoBehaviour
                 {
                     createobj = Instantiate(createObject[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 	
-                    rb = createobj.AddComponent<Rigidbody>();
+                    rb = createobj.GetComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
                     rb.useGravity = false;
                     
@@ -128,7 +128,7 @@ public class Create : MonoBehaviour
                 {
                     createobj = Instantiate(createObject[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 	
-                    rb = createobj.AddComponent<Rigidbody>();
+                    rb = createobj.GetComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
                     rb.useGravity = false;
                     
@@ -138,7 +138,7 @@ public class Create : MonoBehaviour
                 {
                     createobj = Instantiate(createObject[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 	
-                    rb = createobj.AddComponent<Rigidbody>();
+                    rb = createobj.GetComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
                     rb.useGravity = false;
                     InvokeRepeating("Under",0,count[1]);
@@ -147,7 +147,7 @@ public class Create : MonoBehaviour
                 {
                     createobj = Instantiate(createObject[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
                 	
-                    rb = createobj.AddComponent<Rigidbody>();
+                    rb = createobj.GetComponent<Rigidbody>();
                     createobj.AddComponent<DestroyControl>();
                     rb.useGravity = false;
                 }

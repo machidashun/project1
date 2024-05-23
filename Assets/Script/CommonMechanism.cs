@@ -5,13 +5,13 @@ using UnityEngine;
 public class CommonMechanism : MonoBehaviour
 {
     [Header("0 : →\n1 : ←\n2 : 繰り返す")]
-    [SerializeField] private bool[] xmove;
+    public bool[] xmove;
 
     [Header("0 : 右上限\n1 : 左上限\n2 : 移動速度")]
     [SerializeField] private float[] xrange;
 
     [Header("0 : ↑\n1 : ↓\n2 : 繰り返す")]
-    [SerializeField] private bool[] ymove;
+    public bool[] ymove;
 
     [Header("0 : ↑上限\n1 : ↓上限\n2 : 移動速度")]
     [SerializeField] private float[] yrange;
