@@ -28,6 +28,7 @@ TagManager:
   - Electricity
   - Wiring
   - door
+  - DummyGround
   layers:
   - Default
   - TransparentFX

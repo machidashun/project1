@@ -35,7 +35,7 @@ public class PlayerMoveControlRb : MonoBehaviour
         Gravity();
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward,new Vector3(1, 0, 1)).normalized;
         movepos = Camera.main.transform.right * Input.GetAxis("Horizontal") * moveSpeed;
-        
+        Debug.Log(movepos);
         if(ch.enabled)
         {
             if(ch.isGrounded)
@@ -67,16 +67,12 @@ public class PlayerMoveControlRb : MonoBehaviour
 
         }
         transform.LookAt(transform.position + movepos);
+         if(!ch.enabled && moveflag)rb.AddForce(movepos,ForceMode.Acceleration);
     }
 
     void Update()
     {
-        if(ch.enabled)Debug.Log(1);
-        /* if(Input.GetAxis("Horizontal") == 0)
-        {
-            Debug.Log(Input.GetAxis("Horizontal"));
-        } */
-        Debug.Log(isGrounded);
+        
         if (ch.enabled && ch.isGrounded && Input.GetKey(KeyCode.Space))
         {
             PlayersPos.y = jumpPower;
@@ -88,7 +84,8 @@ public class PlayerMoveControlRb : MonoBehaviour
         }
 
         if(ch.enabled && moveflag)ch.Move(PlayersPos * Time.deltaTime);
-        if(!ch.enabled && moveflag)rb.velocity = movepos;
+        Debug.Log(movepos);
+       
     }
 
     void Gravity()

@@ -62,10 +62,11 @@ public class PlayerMoveControl : MonoBehaviour
             Debug.Log(Input.GetAxis("Horizontal"));
         } */
         
-        if (ch.enabled && ch.isGrounded && Input.GetKey(KeyCode.Space))
+        if (ch.enabled && ch.isGrounded && Input.GetKey(KeyCode.Space) || Input.GetKey ("joystick button 0") && ch.enabled && ch.isGrounded)
         {
             PlayersPos.y = jumpPower;
         }
+        
         if(ch.enabled && moveflag)ch.Move(PlayersPos * Time.deltaTime);
     }
 
@@ -129,7 +130,7 @@ public class PlayerMoveControl : MonoBehaviour
             Debug.Log("Saltcount:" + Saltcount);
         }
 
-        if(hit.gameObject.tag == "Ice" && Input.GetKeyDown(KeyCode.Q) && Saltcount > 0)
+        if(hit.gameObject.tag == "Ice" && Input.GetKeyDown(KeyCode.Q) && Saltcount > 0 || hit.gameObject.tag == "Ice" && Input.GetKeyDown ("joystick button 2") && Saltcount > 0)
         {
             Saltcount--;
             Debug.Log("Saltcount:" + Saltcount);

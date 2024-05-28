@@ -12,7 +12,7 @@ public class Retry : MonoBehaviour
     {
         if(saveNumber[2])
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = false;
+            //GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = false;
             GameObject.FindWithTag("Player").gameObject.transform.position = GameObject.FindWithTag("SavePoint3").gameObject.transform.position;
             //GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
         }
@@ -31,7 +31,7 @@ public class Retry : MonoBehaviour
     void Start()
     {
         resettime = 0;
-        GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
+        //GameObject.FindWithTag("Player").GetComponent<PlayerMoveControl>().enabled = true;
         /* for(int i = 0; i < saveNumber.Length;i++)
         {
             if(saveNumber[i])

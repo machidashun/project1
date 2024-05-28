@@ -19,7 +19,7 @@ public class WaterVaporControl : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") || Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
@@ -29,7 +29,7 @@ public class WaterVaporControl : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") || Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
