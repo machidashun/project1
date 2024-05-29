@@ -34,14 +34,19 @@ public class Electricity : MonoBehaviour
         }
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnTriggerExit(Collider hit)
+    {
+        
+    }
+    
+    /* void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.gameObject.tag == "Player")
         {
             Destroy(hit.gameObject);
             retry.REtry();
         }
-    }
+    } */
 
     /* void OnTriggerExit(Collider hit)
     {

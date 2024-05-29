@@ -21,7 +21,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
         isGrounded = true;
         moveflag = false;
         rb = GetComponent<Rigidbody>();
-        retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
+        //retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         rb.useGravity = false;
         Saltcount = 0;
         animator = GetComponent<Animator>();
@@ -47,7 +47,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
     void Update()
     {
         
-        if (isGrounded && Input.GetKeyDown("joystick button 0"))
+        if (isGrounded && Input.GetKey(KeyCode.Space) || isGrounded && Input.GetKeyDown("joystick button 0"))
         {
             isGrounded = false;
             Debug.Log(11);
@@ -87,10 +87,11 @@ public class PlayerMoveControlRbr : MonoBehaviour
                 hit.gameObject.GetComponent<IceControl>().changeFlag = false;
                 hit.gameObject.layer = hit.gameObject.GetComponent<IceControl>().layers[2];
                 Vector3 Gp = hit.gameObject.transform.position;
-                Gp.y = 0;
+                Gp.y = Gp.y -1;
 
                 GameObject createobj = Instantiate(hit.gameObject.GetComponent<IceControl>().obj[2],Gp,Quaternion.identity);
                 createobj.transform.localScale = hit.gameObject.transform.localScale;
+                createobj.transform.parent = hit.gameObject.transform;
             }
         }
     }
@@ -125,7 +126,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
         if(hit.gameObject.tag == "DummyGround")
         {
 
-        transform.parent = null;   
+           transform.parent = null;
         /* if(hit.gameObject.GetComponent<StatusControl>().statu[0] == true)
             {
                 transform.parent = null;
@@ -133,17 +134,11 @@ public class PlayerMoveControlRbr : MonoBehaviour
         }
     }
 
-   
     void OnCollisionEnter(Collision hit)
     {
-        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice")
+        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice" || hit.gameObject.tag == "DummyGround")
         {
             isGrounded = true;
         }
-    }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-       
     }
 }
