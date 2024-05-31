@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1784678795446438669}
   - component: {fileID: 1784678795446438670}
+  - component: {fileID: 4721286633694681354}
   m_Layer: 0
   m_Name: LongGround
   m_TagString: DummyGround
@@ -46,6 +47,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99, y: 1.2, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4721286633694681354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784678795446438665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmove: 000000
+  xrange:
+  - 0
+  - 0
+  - 0
+  ymove: 000000
+  yrange:
+  - 0
+  - 0
+  - 0
 --- !u!1 &5558075917446774130
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,8 +82,7 @@ GameObject:
   - component: {fileID: 5558075917446774132}
   - component: {fileID: 5558075917446774133}
   - component: {fileID: 7603644964553103628}
-  - component: {fileID: 3124670351368639392}
-  - component: {fileID: 6866926645659112903}
+  - component: {fileID: 4072668425902535866}
   m_Layer: 0
   m_Name: LongGround
   m_TagString: Ground
@@ -162,29 +184,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3124670351368639392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5558075917446774130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xmove: 000000
-  xrange:
-  - 0
-  - 0
-  - 0
-  ymove: 000000
-  yrange:
-  - 0
-  - 0
-  - 0
---- !u!114 &6866926645659112903
+--- !u!114 &4072668425902535866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

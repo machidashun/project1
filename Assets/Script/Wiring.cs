@@ -26,7 +26,7 @@ public class Wiring : MonoBehaviour
 
     void OnTriggerStay(Collider hit)
     { 	
-        if(hit.gameObject.tag == "Electricity" && !situation || hit.gameObject.tag == "Wiring" && !situation)
+        if(hit.gameObject.tag == "Electricity" && !situation || hit.gameObject.tag == "Wiring" && !situation && hit.gameObject.GetComponent<Wiring>().situation)
         {
             situation = true;
             Change();
@@ -52,7 +52,7 @@ public class Wiring : MonoBehaviour
 
     void OnTriggerExit(Collider hit)
     {
-        if(hit.gameObject.tag == "Electricity")
+        if(hit.gameObject.tag == "Electricity" || hit.gameObject.tag == "Wiring" && situation)
         {
             situation = false;
             Change();   

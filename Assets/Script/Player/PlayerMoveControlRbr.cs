@@ -21,7 +21,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
         isGrounded = true;
         moveflag = false;
         rb = GetComponent<Rigidbody>();
-        //retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
+        retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         rb.useGravity = false;
         Saltcount = 0;
         animator = GetComponent<Animator>();
@@ -47,10 +47,9 @@ public class PlayerMoveControlRbr : MonoBehaviour
     void Update()
     {
         
-        if (isGrounded && Input.GetKey(KeyCode.Space) || isGrounded && Input.GetKeyDown("joystick button 0"))
+        if (/* isGrounded && Input.GetKey(KeyCode.Space) ||  */isGrounded && Input.GetKeyDown("joystick button 0"))
         {
             isGrounded = false;
-            Debug.Log(11);
             rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
         }
 
@@ -113,11 +112,10 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
         if(hit.gameObject.tag == "DummyGround")
         {
-           transform.parent = hit.gameObject.transform;
-            /* if(hit.gameObject.GetComponent<StatusControl>().statu[0] == true)
+            if(hit.gameObject.transform.GetChild(0).GetComponent<StatusControl>().statu[0] == true)
             {
                 transform.parent = hit.gameObject.transform;
-            } */
+            }
         }
     }
 
@@ -125,12 +123,10 @@ public class PlayerMoveControlRbr : MonoBehaviour
     {
         if(hit.gameObject.tag == "DummyGround")
         {
-
-           transform.parent = null;
-        /* if(hit.gameObject.GetComponent<StatusControl>().statu[0] == true)
+            if(hit.gameObject.transform.GetChild(0).GetComponent<StatusControl>().statu[0] == true)
             {
                 transform.parent = null;
-            } */
+            }
         }
     }
 

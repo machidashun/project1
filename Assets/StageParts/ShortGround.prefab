@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3953347382137283243}
   - component: {fileID: 3953347382137283236}
+  - component: {fileID: 2072990082259689463}
   m_Layer: 0
   m_Name: ShortGround
   m_TagString: DummyGround
@@ -46,6 +47,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9, y: 1.1, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2072990082259689463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3953347382137283239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xmove: 000000
+  xrange:
+  - 0
+  - 0
+  - 0
+  ymove: 000000
+  yrange:
+  - 0
+  - 0
+  - 0
 --- !u!1 &8844370317076040274
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,9 +81,8 @@ GameObject:
   - component: {fileID: 8844370317076040287}
   - component: {fileID: 8844370317076040272}
   - component: {fileID: 8844370317076040273}
-  - component: {fileID: 931288275342667038}
   - component: {fileID: 4199127881803843736}
-  - component: {fileID: 5699656149346540319}
+  - component: {fileID: 2802325829087882787}
   m_Layer: 0
   m_Name: ShortGround
   m_TagString: Ground
@@ -146,28 +168,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &931288275342667038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8844370317076040274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7a890b319344494991af4fc585b7829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xmove: 000000
-  xrange:
-  - 0
-  - 0
-  - 0
-  ymove: 000000
-  yrange:
-  - 0
-  - 0
-  - 0
 --- !u!54 &4199127881803843736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5699656149346540319
+--- !u!114 &2802325829087882787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

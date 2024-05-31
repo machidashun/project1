@@ -58,7 +58,7 @@ public class WaterVaporControl : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (hit.gameObject.tag == "Ground" && hit.gameObject.GetComponent<StatusControl>().statu[1] == true)
+        if (hit.gameObject.tag == "DummyGround" && hit.gameObject.GetComponent<StatusControl>().statu[1] == true)
         {
             CancelInvoke("Rise");
         }
