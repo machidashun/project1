@@ -7,17 +7,17 @@ public class IceControl : MonoBehaviour
 {
     public GameObject[] obj;
     public bool changeFlag;
-    public int[] layers;
+    //public int[] layers;
     Push push;
     WaterControl waterControl;
     void Start()
     {
         changeFlag = true;
-        layers = new int[3];
+        /* layers = new int[3];
         layers[0] = LayerMask.NameToLayer("Ice");
         layers[1] = LayerMask.NameToLayer("Player");
         layers[2] = LayerMask.NameToLayer("icethatdoesn'tmelt");
-        Physics.IgnoreLayerCollision(layers[0], layers[1],true);
+        Physics.IgnoreLayerCollision(layers[0], layers[1],true); */
         if(GameObject.FindWithTag("Push")) push = GameObject.FindWithTag("Push").GetComponent<Push>();
     }
 

@@ -47,9 +47,10 @@ public class PlayerMoveControlRbr : MonoBehaviour
     void Update()
     {
         
-        if (/* isGrounded && Input.GetKey(KeyCode.Space) ||  */isGrounded && Input.GetKeyDown("joystick button 0"))
+        if (/* isGrounded && Input.GetKey(KeyCode.Space) ||  */isGrounded && Input.GetKeyDown("joystick button 0") && !IsInvoking("JumpCT"))
         {
             isGrounded = false;
+            if(!IsInvoking("JumpCT"))Invoke("JumpCT",0.5f);
             rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
         }
 
@@ -57,6 +58,10 @@ public class PlayerMoveControlRbr : MonoBehaviour
        
     }
 
+    void JumpCT()
+    {
+        CancelInvoke("JumpCT");
+    }
 
     void Animation()
     {
@@ -84,7 +89,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
                 Saltcount--;
                 Debug.Log("Saltcount:" + Saltcount);
                 hit.gameObject.GetComponent<IceControl>().changeFlag = false;
-                hit.gameObject.layer = hit.gameObject.GetComponent<IceControl>().layers[2];
+                //hit.gameObject.layer = hit.gameObject.GetComponent<IceControl>().layers[2];
                 Vector3 Gp = hit.gameObject.transform.position;
                 Gp.y = Gp.y -1;
 
@@ -97,7 +102,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
     void OnTriggerEnter(Collider hit)
     {
-        if(hit.gameObject.tag == "Oil" || hit.gameObject.tag == "ElectricityWater" || hit.gameObject.tag == "Fireball" || hit.gameObject.tag == "Thorn")
+        if(hit.gameObject.tag == "Oil" || hit.gameObject.tag == "ElectricityWater" || hit.gameObject.tag == "Fireball" || hit.gameObject.tag == "Fire" ||hit.gameObject.tag == "Thorn")
         {
             Destroy(gameObject);
             retry.REtry();
@@ -132,7 +137,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
     void OnCollisionEnter(Collision hit)
     {
-        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice" || hit.gameObject.tag == "DummyGround")
+        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice" || hit.gameObject.tag == "DummyGround" || hit.gameObject.tag == "door")
         {
             isGrounded = true;
         }

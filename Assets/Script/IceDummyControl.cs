@@ -12,9 +12,9 @@ public class IceDummyControl : MonoBehaviour
     {
 
         Invoke("Materialization",0.2f);
-        layers = new int[2];
+       /*  layers = new int[2];
         layers[0] = LayerMask.NameToLayer("Ice");
-        layers[1] = LayerMask.NameToLayer("Player");
+        layers[1] = LayerMask.NameToLayer("Player"); */
         //transform.parent = GameObject.Find("Stage").transform;
     }
     
@@ -30,8 +30,9 @@ public class IceDummyControl : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            Physics.IgnoreLayerCollision(layers[0], layers[1],false);
+            gameObject.transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = false;
             /*
+            Physics.IgnoreLayerCollision(layers[0], layers[1],false);
             CancelInvoke("Right");
             CancelInvoke("Left");
             CancelInvoke("Up");
@@ -58,7 +59,8 @@ public class IceDummyControl : MonoBehaviour
 
     void Materialization()
     {   
-        Physics.IgnoreLayerCollision(layers[0], layers[1],false);
+        gameObject.transform.GetChild(0).GetComponent<BoxCollider>().isTrigger = false;
+        //Physics.IgnoreLayerCollision(layers[0], layers[1],false);
     }
 
     public void Move(Vector3 pos)//Pushオブジェクトの位置へ移動

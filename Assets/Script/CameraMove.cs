@@ -15,15 +15,15 @@ public class CameraMove : MonoBehaviour
         
                 if(Retry.saveNumber[2])
                 {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint3").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint3").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint3").gameObject.transform.position.y,transform.position.z);
                 }
                 else if(Retry.saveNumber[1])
                 {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint2").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint2").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint2").gameObject.transform.position.y,transform.position.z);
                 }
                 else if(Retry.saveNumber[0])
                 {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint1").gameObject.transform.position.x,transform.position.y,transform.position.z);
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint1").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint1").gameObject.transform.position.y,transform.position.z);
                 }
 
                 Camera = transform.position - player.transform.position;

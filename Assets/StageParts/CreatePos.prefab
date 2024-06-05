@@ -49,11 +49,18 @@ MonoBehaviour:
   - {fileID: 4800376317604829866, guid: 1cedfdfa894781d449805754194b9f80, type: 3}
   - {fileID: 2739033104637899782, guid: db570a4ee616e1848a80722c7b4bf86d, type: 3}
   - {fileID: 7867980320832149349, guid: 013fc1154243c264481b679d5b9a9828, type: 3}
-  flag: 000000
+  - {fileID: 6315119188445934684, guid: abb9eefde400bc646b8fb0270d4c7838, type: 3}
+  - {fileID: 7404838240410967461, guid: 1daceef35c0a7a04cb69a479ec7969d0, type: 3}
+  flag: 0000000000
   direction: 00000000
   count:
   - 1
   - 0.01
+  scale:
+  - 1
+  - 1
+  - 1
+  destruction: 00
 --- !u!1 &4269967649204656168
 GameObject:
   m_ObjectHideFlags: 0
