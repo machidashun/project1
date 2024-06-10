@@ -29,6 +29,13 @@ TagManager:
   - Wiring
   - door
   - DummyGround
+  - SavePoint10
+  - SavePoint9
+  - SavePoint8
+  - SavePoint7
+  - SavePoint6
+  - SavePoint5
+  - SavePoint4
   layers:
   - Default
   - TransparentFX

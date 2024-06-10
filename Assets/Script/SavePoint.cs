@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-    public bool[] saveNumber = {false,false,false};
+    public bool[] saveNumber = {false,false,false,false,false,false,false,false,false,false};
 
     void Start()
     {
@@ -15,9 +15,37 @@ public class SavePoint : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            if(gameObject.tag == "SavePoint3")
+            if(gameObject.tag == "SavePoint10")
             {
-                Retry.saveNumber[2] = true; 
+                Retry.saveNumber[9] = true; 
+            }
+            else if(gameObject.tag == "SavePoint9")
+            {
+                Retry.saveNumber[8] = true;
+            }
+            else if(gameObject.tag == "SavePoint8")
+            {
+                Retry.saveNumber[7] = true;
+            }
+            else if(gameObject.tag == "SavePoint7")
+            {
+                Retry.saveNumber[6] = true; 
+            }
+            else if(gameObject.tag == "SavePoint6")
+            {
+                Retry.saveNumber[5] = true;
+            }
+            else if(gameObject.tag == "SavePoint5")
+            {
+                Retry.saveNumber[4] = true;
+            }
+            else if(gameObject.tag == "SavePoint4")
+            {
+                Retry.saveNumber[3] = true; 
+            }
+            else if(gameObject.tag == "SavePoint3")
+            {
+                Retry.saveNumber[2] = true;
             }
             else if(gameObject.tag == "SavePoint2")
             {
