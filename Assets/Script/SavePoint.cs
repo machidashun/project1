@@ -29,6 +29,7 @@ public class SavePoint : MonoBehaviour
             }
             else if(gameObject.tag == "SavePoint7")
             {
+                Debug.Log(12);
                 Retry.saveNumber[6] = true; 
             }
             else if(gameObject.tag == "SavePoint6")

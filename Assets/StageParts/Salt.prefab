@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5963969858935610592}
   - component: {fileID: 5963969858935610593}
   - component: {fileID: 5963969858935610597}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Salt
   m_TagString: Salt
   m_Icon: {fileID: 0}

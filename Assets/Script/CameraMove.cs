@@ -11,9 +11,37 @@ public class CameraMove : MonoBehaviour
 	void Start () 
         {
         
-        player = GameObject.Find("Muryotaisu");
-        
-                if(Retry.saveNumber[2])
+                player = GameObject.Find("Muryotaisu");
+
+                if(Retry.saveNumber[9])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint10").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint10").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[8])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint9").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint9").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[7])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint8").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint8").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[6])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint7").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint7").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[5])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint6").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint6").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[4])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint5").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint5").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[3])
+                {
+                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint4").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint4").gameObject.transform.position.y,transform.position.z);
+                }
+                else if(Retry.saveNumber[2])
                 {
                         transform.position = new Vector3(GameObject.FindWithTag("SavePoint3").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint3").gameObject.transform.position.y,transform.position.z);
                 }
