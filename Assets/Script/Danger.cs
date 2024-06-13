@@ -42,7 +42,7 @@ public class Danger : MonoBehaviour
             {
                 time = 0f;
                 Debug.Log(12);
-                expansion += 0.015f;
+                expansion += 0.025f;
                 createobj.transform.localScale = new Vector3(scale[0], expansion, scale[2]);
             }
         }
