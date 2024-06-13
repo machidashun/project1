@@ -13,9 +13,12 @@ public class Danger : MonoBehaviour
     [Header("\n0 : 拡大速度")]
     [SerializeField] private float[] count;
 
+    float time = 0f;
     float expansion;
+
     void Start()
     {
+        time = 0f;
         expansion = scale[1];
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
         InvokeRepeating("ScaleUp",0,count[0]);
@@ -34,8 +37,14 @@ public class Danger : MonoBehaviour
     {
         if(createobj)
         {
-            expansion += 0.0065f;
-            createobj.transform.localScale = new Vector3(scale[0], expansion, scale[2]);
+            time+=Time.deltaTime;
+            if(time>=count[0])
+            {
+                time = 0f;
+                Debug.Log(12);
+                expansion += 0.015f;
+                createobj.transform.localScale = new Vector3(scale[0], expansion, scale[2]);
+            }
         }
     }
 }
