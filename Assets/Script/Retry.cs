@@ -67,9 +67,7 @@ public class Retry : MonoBehaviour
                 Retrytime();
             }
         }
-
-        Debug.Log(saveNumber[7]);
-        
+  
         if(Input.GetKeyUp(KeyCode.R))
         {
             resettime = 0;

@@ -16,10 +16,12 @@ public class PlayerMoveControlRbr : MonoBehaviour
     public int Saltcount;
     public bool isGrounded;
     Retry retry;
+    bool saltflag = false;
     void Start()
     {
         isGrounded = true;
         moveflag = false;
+        saltflag = false;
         rb = GetComponent<Rigidbody>();
         retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         rb.useGravity = false;
@@ -82,11 +84,12 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
     void OnCollisionStay(Collision hit)
     {
-        if(hit.gameObject.tag == "Ice" && Saltcount > 0)
+        if(hit.gameObject.tag == "Ice" && Saltcount > 0 && !saltflag)
         {
-            if(Input.GetKeyDown(KeyCode.Q) || Input.GetKey("joystick button 2"))
+            if(Input.GetKey("joystick button 2") && hit.gameObject.GetComponent<IceControl>().changeFlag)
             {
                 Saltcount--;
+                saltflag = true;
                 Debug.Log("Saltcount:" + Saltcount);
                 hit.gameObject.GetComponent<IceControl>().changeFlag = false;
                 //hit.gameObject.layer = hit.gameObject.GetComponent<IceControl>().layers[2];
@@ -97,6 +100,14 @@ public class PlayerMoveControlRbr : MonoBehaviour
                 createobj.transform.localScale = hit.gameObject.transform.localScale;
                 createobj.transform.parent = hit.gameObject.transform;
             }
+        }
+    }
+
+    void OnCollisionExit(Collision hit)
+    {
+        if(hit.gameObject.tag == "Ice" && saltflag)
+        {
+            saltflag = false;
         }
     }
 

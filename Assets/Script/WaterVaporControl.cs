@@ -46,7 +46,7 @@ public class WaterVaporControl : MonoBehaviour
     {
         pos = this.transform.position;
         
-        pos.y += 0.003f;
+        pos.y += 0.009f;
         myTransform.position = new Vector3(pos.x,pos.y,0);
         
     }
