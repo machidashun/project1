@@ -10,7 +10,7 @@ public class Danger : MonoBehaviour
     [Header("サイズ\n0 : X\n1 : Y\n2 : Z")]
     [SerializeField] private float[] scale;
 
-    [Header("\n0 : 拡大速度")]
+    [Header("\n0 : 拡大速度\n1 : 拡大率")]
     [SerializeField] private float[] count;
 
     float time = 0f;
@@ -21,7 +21,20 @@ public class Danger : MonoBehaviour
         time = 0f;
         expansion = scale[1];
         gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        InvokeRepeating("ScaleUp",0,count[0]);
+    }
+
+    void FixedUpdate() 
+    {
+        if(createobj)
+        {
+            ScaleUp();
+            time+=Time.fixedDeltaTime;
+
+            if(time>=count[0])
+            {
+                time = 0f;
+            }
+        }
     }
 
     void OnTriggerEnter(Collider hit)
@@ -35,16 +48,9 @@ public class Danger : MonoBehaviour
 
     void ScaleUp()
     {
-        if(createobj)
-        {
-            time+=Time.deltaTime;
-            if(time>=count[0])
-            {
-                time = 0f;
-                Debug.Log(12);
-                expansion += 0.025f;
-                createobj.transform.localScale = new Vector3(scale[0], expansion, scale[2]);
-            }
-        }
+        Debug.Log(12);
+        expansion += count[1];
+        createobj.transform.localScale = new Vector3(scale[0], expansion, scale[2]);
+
     }
 }
