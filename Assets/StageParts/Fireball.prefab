@@ -24148,6 +24148,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  mode: 000000
 --- !u!1 &1788281212538008326
 GameObject:
   m_ObjectHideFlags: 0

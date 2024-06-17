@@ -17,17 +17,25 @@ public class CommonMechanism : MonoBehaviour
     [SerializeField] private float[] yrange;
 
     private Vector3 movePos;
+
+    [Header("※項番1,2は一部オブジェクトのみ有効\n未選択の場合は無条件に起動\nギミック起動条件\n0 : playerが接近\n1 : playerと接触\n2 : playerが離れた")]
+    public bool[] mode;
+
     void Start()
     {
-        if(xmove[0] || xmove[1])
+        if(!mode[0] && !mode[1] && !mode[2])
         {
-            if(!IsInvoking("MoveX"))InvokeRepeating("MoveX",0,0.01f);                       
+            if(xmove[0] || xmove[1])
+            {
+                if(!IsInvoking("MoveX"))InvokeRepeating("MoveX",0,0.01f);                       
+            }
+
+            if(ymove[0] || ymove[1])
+            {
+                if(!IsInvoking("MoveY"))InvokeRepeating("MoveY",0,0.01f);                       
+            }
         }
 
-        if(ymove[0] || ymove[1])
-        {
-            if(!IsInvoking("MoveY"))InvokeRepeating("MoveY",0,0.01f);                       
-        }
 
         movePos = transform.position;
     }

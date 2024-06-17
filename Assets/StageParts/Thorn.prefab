@@ -107,6 +107,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  mode: 000000
 --- !u!64 &3009743180479924618
 MeshCollider:
   m_ObjectHideFlags: 0

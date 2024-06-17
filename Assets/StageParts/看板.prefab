@@ -67,7 +67,8 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  count:
+  direction: 0000
+  expansion:
   - 0.01
   - 0.01
 --- !u!1 &3473490054819622948

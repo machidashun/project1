@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraMove : MonoBehaviour
 {
-    private GameObject player;
-    private Vector3 Camera;
- 
+        private GameObject player;
+        private Vector3 Camera;
+        [SerializeField] private CinemachineVirtualCamera _virtualCamera;
+        CameraState state;
+        //m_Lens.OrthographicSize
 	// Use this for initialization
 	void Start () 
         {
-        
-                player = GameObject.Find("Muryotaisu");
+                state = _virtualCamera.State;
+                
+                /* player = GameObject.FindWithTag("Player");
 
                 if(Retry.saveNumber[9])
                 {
@@ -54,11 +58,44 @@ public class CameraMove : MonoBehaviour
                         transform.position = new Vector3(GameObject.FindWithTag("SavePoint1").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint1").gameObject.transform.position.y,transform.position.z);
                 }
 
-                Camera = transform.position - player.transform.position;
+                Camera = transform.position - player.transform.position; */
         
 	}
 
-	void Update () {
-        if(player)transform.position = player.transform.position + Camera;
+	void Update () 
+        {
+                //if(player)transform.position = player.transform.position + Camera;
+
+                float dph = Input.GetAxis ("HorizontalD");
+                float dpv = Input.GetAxis ("VerticalD");
+
+               /*  if(dpv != 0)
+                {
+                        if(dpv >= 1)
+                        {
+                                Debug.Log("十字ボタン: 右");
+                        }
+                        else if(dpv < 0 )
+                        {
+                                Debug.Log("十字ボタン: 左");
+                        }
+                } */
+
+                if(dph != 0)
+                {
+                        if(dph >= 1 && _virtualCamera.m_Lens.OrthographicSize + 0.1f < 8)
+                        {
+                                Debug.Log("十字ボタン: 上");
+                                _virtualCamera.m_Lens.OrthographicSize += 0.1f;
+                                
+                        }
+                        else if(dph < 0 && _virtualCamera.m_Lens.OrthographicSize -0.1f > 5)
+                        {
+                                Debug.Log("十字ボタン: 下");
+                                _virtualCamera.m_Lens.OrthographicSize -= 0.1f;
+                                Debug.Log(_virtualCamera.m_Lens.OrthographicSize);
+                        }
+
+                }
 	}
 }
