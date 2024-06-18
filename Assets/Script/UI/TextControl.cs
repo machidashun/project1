@@ -73,7 +73,7 @@ public class TextControl : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetKeyDown("joystick button 1")) {
+        if (Time.timeScale == 0 && Input.GetKeyDown("joystick button 1")) {
             
             if(43 == TextControl.count && training.textbox.activeSelf)training.TextboxOff();
             if(language)
