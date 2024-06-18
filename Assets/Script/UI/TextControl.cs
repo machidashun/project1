@@ -5,15 +5,21 @@ using UnityEngine.UI;
 
 public class TextControl : MonoBehaviour
 {
-    [SerializeField]private Text textbox;
-    [SerializeField]private string[] japanesetext = 
+    public Text textbox;
+    public bool language;
+    public static int count;
+    public static int trainingcount;
+
+    public GameObject trainingstage;
+    Training training;
+    public string[] japanesetext = 
     {"<color=#ff0000>CHEMIZUTRY(ケミズトリー)</color>にようこそ▼","このゲームは横スクロールでゴールを目指す\n<color=#ff0000>3Dアクションパズルゲーム</color>だよ▼"
     ,"<color=#ff0000><size=35>赤い帽子のおじさんのゲームっぽいもの</size></color><size=35>だと思ってくれていいよ。▼</size>","まずは操作方法から説明するね▼",
     "<color=#ff0000>左スティック</color>で移動\n<color=#ff0000>Aボタン</color>でジャンプできるよ▼","早速やってみて▼","この黄色のモヤモヤは<color=#ff0000>チェックポイント</color>だよ▼",
     "このゲームではダメージを受けても\nチェックポイントから<color=#ff0000>リスタート</color>できるよ▼","ちなみに<color=#ff0000>Yボタンを長押し</color>してもリスタート\nできるよ▼",
     "チェックポイントは<color=#ff0000>ステージの区切り</color>に\n設置してあるよ▼","区切りごとのチェックポイントに触れないと\n<color=#ff0000>前のチェックポイント</color>からリスタートか▼",
     "<color=#ff0000>スタート地点からリスタート</color>になるから\nチェックポイントは必ず触れておこう▼","ところでいま背負ってる機械\n実は<color=#ff0000>めちゃくちゃ精密機械</color>なんだよね▼",
-    "めちゃくちゃ精密すぎてちょっとした\n<color=#ff0000>衝撃や火気・電気で爆発</color>しちゃうんだ▼","だからとげ・火・油・電気には触れないほうが身のためだよ▼",
+    "めちゃくちゃ精密すぎてちょっとした\n<color=#ff0000>衝撃や火気・電気で爆発</color>しちゃうんだ▼","だからとげ・火・油・電気には\n触れないほうが身のためだよ▼",
     "じゃあ背負ってる機械はなんなのかって\n話なんだけど・・・▼","これは<color=#ff0000>変化システム</color>を司る機械なんだ▼","え？変化システムが何か？って？▼",
     "変化システムは水や氷、水蒸気を\n<color=#ff0000>自在に変化</color>することができるシステムだよ▼","変化システムを使うには<color=#ff0000>LBとRB</color>だよ▼",
     "変化の仕方は<color=#ff0000>右下の図</color>を参考にしてね▼","ついでに水、氷、水蒸気の\n<color=#ff0000>簡単な性質</color>について説明するね▼","水は空中にあると<color=#ff0000>落下</color>し\n水蒸気は<color=#ff0000>上昇</color>、氷は<color=#ff0000>固定</color>されるよ▼",
@@ -26,7 +32,7 @@ public class TextControl : MonoBehaviour
     "発射された水は<color=#ff0000>壁に当たるまで</color>飛び続けるよ▼","発射中に氷や水蒸気に<color=#ff0000>変化すると停止</color>するよ▼","だけどほとんどのステージでは\n<color=#ff0000>詰むことが多い</color>からしないほうがいいよ▼",
     "右のモヤモヤはゴール\nこれに触れると<color=#ff0000>ステージクリア</color>だよ▼","・・・これで大体の説明はできたかな▼","これだけ理解出来たら十分だよ\n<color=#ff0000>CHEMIZUTRY(ケミズトリー)を楽しんでね</color>▼"};
     
-    [SerializeField]private string[] Englishtext = 
+    public string[] Englishtext = 
     {"Welcome to <color=#ff0000>CHEMIZUTRY</color>▼","This game is a side-scrolling\n<color=#ff0000>3D action puzzle game</color>▼","<size=35>You can think of it as something like</size> <color=#ff0000><size=35>the Red Hat Plumber game</size></color><size=35>▼</size>",
     "Let me start by explaining\nhow to operate it▼","<color=#ff0000>Left stick </color>to move\n<color=#ff0000>Press A</color> to jump▼","Try it▼","This yellow blur is a <color=#ff0000>checkpoint</color>▼",
     "In this game, even if you take damage...\nyou can <color=#ff0000>restart</color> from a checkpoint▼","By the way, you can also press and <color=#ff0000>hold\nthe Y button </color>to restart.",
@@ -48,12 +54,136 @@ public class TextControl : MonoBehaviour
 
     void Start()
     {
-        
+        if(trainingstage)
+        {
+            training = GameObject.Find("ControlSystem").GetComponent<Training>();
+        }
+
+        if(language)
+            {
+                textbox.text = japanesetext[TextControl.count];
+            }
+            else
+            {
+                textbox.text = Englishtext[TextControl.count];
+            }
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if (Input.GetKeyDown("joystick button 1")) {
+            
+            if(43 == TextControl.count && training.textbox.activeSelf)training.TextboxOff();
+            if(language)
+            {
+                if(japanesetext.Length -1 > TextControl.count && training.textbox.activeSelf)
+                {
+                    TextControl.count += 1;
+                    TextControl.trainingcount += 1;
+                }
+
+                if(TextControl.trainingcount == 6)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 12)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 15)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 25)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 28)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 30)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 32)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 37)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 41)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 44)
+                {
+                    training.TextboxOff();
+                }
+                if(training.textbox.activeSelf)textbox.text = japanesetext[TextControl.count];
+            }
+            else
+            {
+                if(Englishtext.Length -1 > TextControl.count && training.textbox.activeSelf)
+                {
+                    TextControl.count += 1;
+                    TextControl.trainingcount += 1;
+                }
+
+                if(TextControl.trainingcount == 6)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 12)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 15)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 25)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 28)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 30)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 32)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 37)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 41)
+                {
+                    training.TextboxOff();
+                }
+                else if(TextControl.trainingcount == 44)
+                {
+                    training.TextboxOff();
+                }
+
+                if(training.textbox.activeSelf)textbox.text = Englishtext[TextControl.count];
+            }
+
+        }
     }
+
+    public void Textoff()
+    {
+        training.TextboxOff();
+    }
+
 }

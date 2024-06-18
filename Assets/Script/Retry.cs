@@ -59,7 +59,7 @@ public class Retry : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.R))
+        if(Input.GetKey("joystick button 3"))
         {
             resettime += Time.deltaTime;
             if(resettime >= 1.5f)
@@ -68,7 +68,7 @@ public class Retry : MonoBehaviour
             }
         }
   
-        if(Input.GetKeyUp(KeyCode.R))
+        if(Input.GetKeyUp("joystick button 3"))
         {
             resettime = 0;
         }

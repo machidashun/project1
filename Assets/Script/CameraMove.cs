@@ -83,15 +83,15 @@ public class CameraMove : MonoBehaviour
 
                 if(dph != 0)
                 {
-                        if(dph >= 1 && _virtualCamera.m_Lens.OrthographicSize + 0.1f < 8)
+                        if(dph >= 1 && _virtualCamera.m_Lens.OrthographicSize + 0.1f < 10)
                         {
-                                Debug.Log("十字ボタン: 上");
+                                //Debug.Log("十字ボタン: 上");
                                 _virtualCamera.m_Lens.OrthographicSize += 0.1f;
                                 
                         }
                         else if(dph < 0 && _virtualCamera.m_Lens.OrthographicSize -0.1f > 5)
                         {
-                                Debug.Log("十字ボタン: 下");
+                                //Debug.Log("十字ボタン: 下");
                                 _virtualCamera.m_Lens.OrthographicSize -= 0.1f;
                                 Debug.Log(_virtualCamera.m_Lens.OrthographicSize);
                         }

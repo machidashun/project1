@@ -89,4 +89,36 @@ public class CommonMechanism : MonoBehaviour
         }
         
     }
+
+    void OnTriggerExit(Collider hit)
+    {
+        if(hit.gameObject.tag == "Player" && mode[2])
+        {
+            if(xmove[0] || xmove[1])
+            {
+                if(!IsInvoking("MoveX"))InvokeRepeating("MoveX",0,0.01f);                       
+            }
+
+            if(ymove[0] || ymove[1])
+            {
+                if(IsInvoking("MoveY"))InvokeRepeating("MoveY",0,0.01f);                       
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider hit)
+    {
+        if(hit.gameObject.tag == "Player" && mode[1])
+        {
+           if(xmove[0] || xmove[1])
+            {
+                if(!IsInvoking("MoveX"))InvokeRepeating("MoveX",0,0.01f);                       
+            }
+
+            if(ymove[0] || ymove[1])
+            {
+                if(IsInvoking("MoveY"))InvokeRepeating("MoveY",0,0.01f);                       
+            }
+        }
+    }
 }
