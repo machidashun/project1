@@ -16,7 +16,6 @@ public class Training : MonoBehaviour
         
         if(!Training.boot)
         {
-            Debug.Log(12);
             Training.boot = true;
             textbox.SetActive(true);
         }

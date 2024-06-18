@@ -23,7 +23,7 @@ public class IceControl : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H) && changeFlag && !Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") || Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") && changeFlag && !Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
+        if(Time.timeScale != 0 && Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") && changeFlag)
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
@@ -35,7 +35,7 @@ public class IceControl : MonoBehaviour
             Destroy(transform.parent.gameObject);
         }
 
-        if(Input.GetKeyDown(KeyCode.H) && !Input.GetKeyDown(KeyCode.G) && changeFlag  && !Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") || Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") && changeFlag && !Input.GetKeyDown(KeyCode.G) && !Input.GetKeyDown(KeyCode.H))
+        if(Time.timeScale != 0 && Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") && changeFlag)
         {
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;

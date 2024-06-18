@@ -81,7 +81,7 @@ public class CameraMove : MonoBehaviour
                         }
                 } */
 
-                if(dph != 0)
+                if(Time.timeScale != 0 && dph != 0)
                 {
                         if(dph >= 1 && _virtualCamera.m_Lens.OrthographicSize + 0.1f < 10)
                         {
