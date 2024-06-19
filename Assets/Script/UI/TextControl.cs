@@ -57,23 +57,28 @@ public class TextControl : MonoBehaviour
         if(trainingstage)
         {
             training = GameObject.Find("ControlSystem").GetComponent<Training>();
+
+            if(trainingstage.activeSelf)
+            {
+                if(language)
+                {
+                    textbox.text = japanesetext[TextControl.count];
+                }
+                else
+                {
+                    textbox.text = Englishtext[TextControl.count];
+                }
+            }
         }
 
-        if(language)
-            {
-                textbox.text = japanesetext[TextControl.count];
-            }
-            else
-            {
-                textbox.text = Englishtext[TextControl.count];
-            }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Time.timeScale == 0 && Input.GetKeyDown("joystick button 1")) {
+        if (trainingstage.activeSelf && Time.timeScale == 0 && Input.GetKeyDown("joystick button 1")) {
             
             if(43 == TextControl.count && training.textbox.activeSelf)training.TextboxOff();
             if(language)
