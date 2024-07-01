@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class GoalPoint : MonoBehaviour
 {
+    public Select select;
+    SoundControl soundControl;
     
+    void Start()
+    {
+        soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
+    }
     void OnTriggerStay(Collider hit)
     {
-        if(hit.gameObject.tag == "Player")
+        if(hit.gameObject.tag == "Player" && !select.uiobj[9].activeSelf)
         {
-            Debug.Log("ゴール");
+            
+            soundControl.SetSE(0,1);
+            Time.timeScale = 0;
+            select.uiobj[9].SetActive(true);
         }
     }
 }

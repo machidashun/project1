@@ -9,13 +9,23 @@ public class Training : MonoBehaviour
     public static bool[] flag = {false,false,false,false,false,false,false,false,false,false};
     TextControl textControl;
     public static bool boot;
-    void Start()
+    public Select select;
+    public void Start()
     {
         player = GameObject.FindWithTag("Player");
         textControl = GameObject.Find("ControlSystem").GetComponent<TextControl>();
         
         if(!Training.boot && textControl.trainingstage.activeSelf)
         {
+            if(TextControl.language)
+            {
+                textControl.textbox.text = textControl.japanesetext[0];
+            }
+            else
+            {
+                textControl.textbox.text = textControl.Englishtext[0];
+            }
+            
             Training.boot = true;
             textbox.SetActive(true);
         }
@@ -77,8 +87,9 @@ public class Training : MonoBehaviour
             {
                 Time.timeScale = 0;
             }
-            else if(!textbox.activeSelf && Time.timeScale == 0)
+            else if(!textbox.activeSelf && Time.timeScale == 0 && !select.flag)
             {
+                //Debug.Log(12);
                 Time.timeScale = 1;
             }
 
@@ -86,12 +97,24 @@ public class Training : MonoBehaviour
         
     }
 
+    public void FlagReset()
+    {
+        for(int j = 0; flag.Length > j; j++)
+        {
+            flag[j] = false;
+        }
+        TextControl.count = 0;
+        TextControl.trainingcount = 0;
+        Training.boot = false;
+    }
+
+
     public void TextboxON()
     {
         TextControl.count += 1;
         textbox.SetActive(true);
         
-        if(textControl.language)
+        if(TextControl.language)
         {
             textControl.textbox.text = textControl.japanesetext[TextControl.count];
         }
@@ -106,7 +129,7 @@ public class Training : MonoBehaviour
     public void TextboxOff()
     {
         TextControl.count -= 1;
-        if(textControl.language)
+        if(TextControl.language)
         {
             textControl.textbox.text = textControl.japanesetext[TextControl.count];
         }

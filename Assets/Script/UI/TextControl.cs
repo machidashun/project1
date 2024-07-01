@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TextControl : MonoBehaviour
 {
     public Text textbox;
-    public bool language;
+    public static bool language;
     public static int count;
     public static int trainingcount;
 
@@ -81,7 +81,7 @@ public class TextControl : MonoBehaviour
         if (trainingstage.activeSelf && Time.timeScale == 0 && Input.GetKeyDown("joystick button 1")) {
             
             if(43 == TextControl.count && training.textbox.activeSelf)training.TextboxOff();
-            if(language)
+            if(TextControl.language)
             {
                 if(japanesetext.Length -1 > TextControl.count && training.textbox.activeSelf)
                 {
@@ -191,4 +191,13 @@ public class TextControl : MonoBehaviour
         training.TextboxOff();
     }
 
+    public void English()
+    {
+        TextControl.language = false;
+    }
+
+    public void Japanese()
+    {
+        TextControl.language = true;
+    }
 }

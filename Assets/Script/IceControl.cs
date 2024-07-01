@@ -10,6 +10,7 @@ public class IceControl : MonoBehaviour
     //public int[] layers;
     Push push;
     WaterControl waterControl;
+    SoundControl soundControl;
     void Start()
     {
         changeFlag = true;
@@ -18,6 +19,7 @@ public class IceControl : MonoBehaviour
         layers[1] = LayerMask.NameToLayer("Player");
         layers[2] = LayerMask.NameToLayer("icethatdoesn'tmelt");
         Physics.IgnoreLayerCollision(layers[0], layers[1],true); */
+        soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
         if(GameObject.FindWithTag("Push")) push = GameObject.FindWithTag("Push").GetComponent<Push>();
     }
 
@@ -25,6 +27,7 @@ public class IceControl : MonoBehaviour
     {
         if(Time.timeScale != 0 && Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4") && changeFlag)
         {
+            soundControl.SetSE(0,8);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
@@ -37,6 +40,7 @@ public class IceControl : MonoBehaviour
 
         if(Time.timeScale != 0 && Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5") && changeFlag)
         {
+            soundControl.SetSE(0,7);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 

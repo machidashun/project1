@@ -6,10 +6,12 @@ public class Wiring : MonoBehaviour
 {
     public GameObject[] obj;
     public bool situation = false;
+    SoundControl soundControl;
 
     void Start()
     {
         situation = false;
+        soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
     }
 
     void Change()
@@ -29,6 +31,7 @@ public class Wiring : MonoBehaviour
         if(hit.gameObject.tag == "Electricity" && !situation || hit.gameObject.tag == "Wiring" && !situation && hit.gameObject.GetComponent<Wiring>().situation)
         {
             situation = true;
+            soundControl.SetSE(0,14);
             Change();
         }
         
@@ -40,6 +43,7 @@ public class Wiring : MonoBehaviour
 
         if(hit.gameObject.tag == "Water" && situation && hit.gameObject.GetComponent<WaterControl>().electrification)
         {
+            soundControl.SetSE(0,14);
             hit.gameObject.GetComponent<WaterControl>().electrification = false;
             Vector3 pos = hit.gameObject.transform.position;
             GameObject createobj = Instantiate(obj[1],new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);

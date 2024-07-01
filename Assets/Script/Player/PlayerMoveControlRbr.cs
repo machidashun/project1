@@ -16,9 +16,13 @@ public class PlayerMoveControlRbr : MonoBehaviour
     public int Saltcount;
     public bool isGrounded;
     Retry retry;
+    Select select;
     bool saltflag = false;
+    public SoundControl soundControl;
+
     void Start()
     {
+        select = GameObject.Find("ControlSystem").GetComponent<Select>();
         isGrounded = true;
         moveflag = false;
         saltflag = false;
@@ -26,33 +30,58 @@ public class PlayerMoveControlRbr : MonoBehaviour
         retry = GameObject.Find("ControlSystem").GetComponent<Retry>();
         rb.useGravity = false;
         Saltcount = 0;
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         Invoke("Moveflagch",0.1f);
         
     }
 
     void FixedUpdate()
     {   
-        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward,new Vector3(1, 0, 1)).normalized;
-        movepos = Camera.main.transform.right * Input.GetAxis("Horizontal") * moveSpeed;
-        movepos = new Vector3(movepos.x,rb.velocity.y,0);
-        rb.AddForce (new Vector3(0,-30,0), ForceMode.Acceleration);
-        //Debug.Log(movepos);
-        //rb.AddForce(new Vector3(0, -300, 0));
+        if(Time.timeScale != 0)
+        {
+            Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward,new Vector3(1, 0, 1)).normalized;
+            movepos = Camera.main.transform.right * Input.GetAxis("Horizontal") * moveSpeed;
+            movepos = new Vector3(movepos.x,rb.velocity.y,0);
+            rb.AddForce (new Vector3(0,-30,0), ForceMode.Acceleration);
+            //Debug.Log(movepos);
+            //rb.AddForce(new Vector3(0, -300, 0));
+            
+            //PlayersPos = movepos;
+            rb.velocity = movepos;
+            transform.LookAt(transform.position + new Vector3(movepos.x,0,0));
+            //if(moveflag)rb.AddForce(movepos,ForceMode.Acceleration);
+        }
         
-        //PlayersPos = movepos;
-        rb.velocity = movepos;
-        transform.LookAt(transform.position + new Vector3(movepos.x,0,0));
-        //if(moveflag)rb.AddForce(movepos,ForceMode.Acceleration);
     }
 
     void Update()
     {
+        Animation();
+        if(rb.velocity.magnitude > 1)
+        {
+            if(isGrounded && !select.uiobj[9].activeSelf)
+            {
+                soundControl.SetSE(0,10);
+            }
+            else
+            {
+                soundControl.SetSE(1,11);
+            }
+        }
+        else
+        {
+            soundControl.SetSE(1,11);
+        }
         
-        if (/* isGrounded && Input.GetKey(KeyCode.Space) ||  */isGrounded && Input.GetKeyDown("joystick button 0") && !IsInvoking("JumpCT"))
+        if (isGrounded && Input.GetKeyDown("joystick button 0") && !IsInvoking("JumpCT") && Time.timeScale != 0)
         {
             isGrounded = false;
-            if(!IsInvoking("JumpCT"))Invoke("JumpCT",0.5f);
+            if(!IsInvoking("JumpCT"))
+            {
+                animator.SetTrigger("jump");
+                soundControl.SetSE(0,2);
+                Invoke("JumpCT",0.5f);
+            }
             rb.AddForce(transform.up * jumpPower, ForceMode.Impulse);
         }
 
@@ -67,14 +96,14 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
     void Animation()
     {
-       /*  if(ch.velocity.magnitude > 3 && ch.isGrounded)
+        if(rb.velocity.magnitude > 1 && isGrounded)
         {
-            animator.SetFloat("move",ch.velocity.magnitude);
+            animator.SetFloat("move",rb.velocity.magnitude);
         }
         else
         {
             animator.SetFloat("move",0);
-        } */
+        }
     }
 
     void Moveflagch()
@@ -89,6 +118,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
             if(Input.GetKey("joystick button 2") && hit.gameObject.GetComponent<IceControl>().changeFlag)
             {
                 Saltcount--;
+                soundControl.SetSE(0,6);
                 saltflag = true;
                 Debug.Log("Saltcount:" + Saltcount);
                 hit.gameObject.GetComponent<IceControl>().changeFlag = false;
@@ -122,6 +152,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
         if (hit.gameObject.tag == "Salt")
         {
             Destroy(hit.gameObject);
+            soundControl.SetSE(0,0);
             Saltcount++;
             Debug.Log("Saltcount:" + Saltcount);
         }
@@ -148,7 +179,7 @@ public class PlayerMoveControlRbr : MonoBehaviour
 
     void OnCollisionEnter(Collision hit)
     {
-        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice" || hit.gameObject.tag == "DummyGround" || hit.gameObject.tag == "door")
+        if(hit.gameObject.tag == "Ground" || hit.gameObject.tag == "Ice" || /* hit.gameObject.tag == "DummyGround" || */ hit.gameObject.tag == "door")
         {
             isGrounded = true;
         }

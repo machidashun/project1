@@ -9,57 +9,19 @@ public class CameraMove : MonoBehaviour
         private Vector3 Camera;
         [SerializeField] private CinemachineVirtualCamera _virtualCamera;
         CameraState state;
+        public static float scale;
+        public static bool boot;
         //m_Lens.OrthographicSize
 	// Use this for initialization
 	void Start () 
         {
-                state = _virtualCamera.State;
-                
-                /* player = GameObject.FindWithTag("Player");
-
-                if(Retry.saveNumber[9])
+                if(!CameraMove.boot)
                 {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint10").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint10").gameObject.transform.position.y,transform.position.z);
+                        CameraMove.boot = true;
+                        CameraMove.scale = 7.5f;
                 }
-                else if(Retry.saveNumber[8])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint9").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint9").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[7])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint8").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint8").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[6])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint7").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint7").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[5])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint6").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint6").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[4])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint5").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint5").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[3])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint4").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint4").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[2])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint3").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint3").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[1])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint2").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint2").gameObject.transform.position.y,transform.position.z);
-                }
-                else if(Retry.saveNumber[0])
-                {
-                        transform.position = new Vector3(GameObject.FindWithTag("SavePoint1").gameObject.transform.position.x,GameObject.FindWithTag("SavePoint1").gameObject.transform.position.y,transform.position.z);
-                }
-
-                Camera = transform.position - player.transform.position; */
-        
+                _virtualCamera.m_Lens.OrthographicSize = CameraMove.scale;
+                //state = _virtualCamera.State;
 	}
 
 	void Update () 
@@ -83,17 +45,20 @@ public class CameraMove : MonoBehaviour
 
                 if(Time.timeScale != 0 && dph != 0)
                 {
-                        if(dph >= 1 && _virtualCamera.m_Lens.OrthographicSize + 0.1f < 10)
+                        if(dph < 0 && CameraMove.scale + 0.1f < 10)
                         {
                                 //Debug.Log("十字ボタン: 上");
-                                _virtualCamera.m_Lens.OrthographicSize += 0.1f;
+                                CameraMove.scale += 0.1f;
+                                _virtualCamera.m_Lens.OrthographicSize = CameraMove.scale;
                                 
                         }
-                        else if(dph < 0 && _virtualCamera.m_Lens.OrthographicSize -0.1f > 5)
+                        else if(dph >= 1 && CameraMove.scale -0.1f > 5)
                         {
                                 //Debug.Log("十字ボタン: 下");
-                                _virtualCamera.m_Lens.OrthographicSize -= 0.1f;
-                                Debug.Log(_virtualCamera.m_Lens.OrthographicSize);
+                                CameraMove.scale -= 0.1f;
+                                _virtualCamera.m_Lens.OrthographicSize = CameraMove.scale;
+
+
                         }
 
                 }

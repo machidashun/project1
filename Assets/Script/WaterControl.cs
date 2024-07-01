@@ -10,9 +10,11 @@ public class WaterControl : MonoBehaviour
     public Rigidbody rb;
     public bool electrification;
     Push push;
+    SoundControl soundControl;
     void Start()
     {
         electrification = true;
+        soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
         //transform.parent = GameObject.Find("Stage").transform;
         rb = GetComponent<Rigidbody>();
         //rb.isKinematic = true;
@@ -24,8 +26,9 @@ public class WaterControl : MonoBehaviour
         Debug.Log(IsInvoking("Left"));
         Debug.Log(IsInvoking("Up"));
         Debug.Log(IsInvoking("Under")); */
-        if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4"))
+        if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4")) //L
         {
+            soundControl.SetSE(0,8);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
@@ -60,8 +63,9 @@ public class WaterControl : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5"))
+        if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5"))//R
         {
+            soundControl.SetSE(0,7);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
             

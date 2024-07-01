@@ -6,8 +6,114 @@ public class Retry : MonoBehaviour
 {
     float resettime;
     public static bool[] saveNumber = {false,false,false,false,false,false,false,false,false,false};
-
+    public Select select;
+    public SoundControl soundControl;
     private void Awake()
+    {
+        RetryStage();
+        RetryPos();
+    }
+
+
+
+    void Start()
+    {
+        resettime = 0;
+    }
+
+    void Update()
+    {
+        if(Time.timeScale != 0 && Input.GetKey("joystick button 3"))
+        {
+            resettime += Time.deltaTime;
+            if(resettime >= 1.5f)
+            {
+                Retrytime();
+            }
+        }
+  
+        if(Time.timeScale != 0 && Input.GetKeyUp("joystick button 3"))
+        {
+            resettime = 0;
+        }
+    }
+
+    public void RetryStage()
+    {
+        if(Select.stage == "0-1")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[9].SetActive(true);
+            select.Tutorialkg();
+        }
+        else if(Select.stage == "1-1")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[0].SetActive(true);
+            select.Intermediatekg();
+        }
+        else if(Select.stage == "1-2")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[1].SetActive(true);
+            select.Intermediatekg();
+        }
+        else if(Select.stage == "1-3")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[2].SetActive(true);
+            select.Intermediatekg();
+        }
+        else if(Select.stage == "2-1")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[3].SetActive(true);
+            select.Beginnerkg();
+        }
+        else if(Select.stage == "2-2")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[4].SetActive(true);
+            select.Beginnerkg();
+        }
+        else if(Select.stage == "2-3")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[5].SetActive(true);
+            select.Beginnerkg();
+        }
+        else if(Select.stage == "3-1")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[6].SetActive(true);
+            select.Advancedkg();
+        }
+        else if(Select.stage == "3-2")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[7].SetActive(true);
+            select.Advancedkg();
+        }
+        else if(Select.stage == "3-3")
+        {
+            Time.timeScale = 1;
+            select.uiobj[6].SetActive(false);
+            select.stageobj[8].SetActive(true);
+            select.Advancedkg();
+        }
+        Time.timeScale = 1;
+    }
+
+    public void RetryPos()
     {
         if(saveNumber[9])
         {
@@ -50,38 +156,15 @@ public class Retry : MonoBehaviour
         }
     }
 
-
-
-    void Start()
-    {
-        resettime = 0;
-    }
-
-    void Update()
-    {
-        if(Time.timeScale != 0 && Input.GetKey("joystick button 3"))
-        {
-            resettime += Time.deltaTime;
-            if(resettime >= 1.5f)
-            {
-                Retrytime();
-            }
-        }
-  
-        if(Time.timeScale != 0 && Input.GetKeyUp("joystick button 3"))
-        {
-            resettime = 0;
-        }
-    }
-
     public void REtry()
     {
-        Invoke("Retrytime",0.5f);
+        Invoke("Retrytime",0/* 0.5f */);
     }
 
     public void Retrytime()
     {
         CancelInvoke("Retrytime");
+        soundControl.SetTime();
         SceneManager.LoadScene("tset");
     }
 }

@@ -8,12 +8,14 @@ public class WaterVaporControl : MonoBehaviour
     public GameObject[] obj;
     Transform myTransform;
     Vector3 pos;
+    SoundControl soundControl;
     void Start()
     {
         myTransform = this.transform;
         pos = this.transform.position;
         if(!IsInvoking("Rise"))InvokeRepeating("Rise",0.5f,0.01f);
         //transform.parent = GameObject.Find("Stage").transform;
+        soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
         
     }
 
@@ -21,6 +23,7 @@ public class WaterVaporControl : MonoBehaviour
     {
         if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 5") && !Input.GetKeyDown ("joystick button 4"))
         {
+            soundControl.SetSE(0,8);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
             GameObject createobj = Instantiate(obj[0],new Vector3(pos.x, pos.y, 0), Quaternion.identity);
@@ -31,6 +34,7 @@ public class WaterVaporControl : MonoBehaviour
 
         if (Time.timeScale != 0 && Input.GetKeyDown ("joystick button 4") && !Input.GetKeyDown ("joystick button 5"))
         {
+            soundControl.SetSE(0,7);
             Transform myTransform = this.transform;
             Vector3 pos = myTransform.position;
 
