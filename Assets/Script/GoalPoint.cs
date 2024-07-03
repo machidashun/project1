@@ -15,7 +15,6 @@ public class GoalPoint : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player" && !select.uiobj[9].activeSelf)
         {
-            
             soundControl.SetSE(0,1);
             Time.timeScale = 0;
             select.uiobj[9].SetActive(true);

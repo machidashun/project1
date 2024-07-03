@@ -25,11 +25,13 @@ public class Select : MonoBehaviour
     float time;
     public static bool retryflag;
     public SoundControl soundControl;
-    
+    Training training;
     int i = 0;
 
     void Start()
     {
+        training = GameObject.Find("ControlSystem").GetComponent<Training>();
+
         limit = 0;
         time = 0;
 
@@ -663,6 +665,11 @@ public class Select : MonoBehaviour
         for(int j = 0; stageobj.Length > j; j++)
         {
             stageobj[j].SetActive(false);
+        }
+        
+        if(Select.stage == "0-1")
+        {
+            training.FlagReset();
         }
         Select.stage = null;
         Select.retryflag = true;

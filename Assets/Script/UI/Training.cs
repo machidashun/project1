@@ -87,9 +87,8 @@ public class Training : MonoBehaviour
             {
                 Time.timeScale = 0;
             }
-            else if(!textbox.activeSelf && Time.timeScale == 0 && !select.flag)
+            else if(!textbox.activeSelf && Time.timeScale == 0 && !select.uiobj[9].activeSelf && !select.flag)
             {
-                //Debug.Log(12);
                 Time.timeScale = 1;
             }
 
