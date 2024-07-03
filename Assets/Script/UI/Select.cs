@@ -123,27 +123,10 @@ public class Select : MonoBehaviour
 
         if(Input.GetKeyDown ("joystick button 7") && Select.stage != null)
         {
-            soundControl.SetSE(0,4);
-            if(!flag)
-            {
-                i = 0;
-                OptionSet();
-                Time.timeScale = 0;
-                flag = true;
-                uiobj[7].SetActive(true);
-            }
-            else
-            {
-                Time.timeScale = 1;
-                i = 0;
-                flag = false;
-                uiobj[7].SetActive(false);
-            }
-
-
+            OptionMenu();
         }
 
-        if (Input.GetKeyDown ("joystick button 1")) 
+        if (Input.GetKeyDown ("joystick button 1")) //B
         {
             soundControl.SetSE(0,4);
             if(uiobj[0].activeSelf && uiobj[6].activeSelf)
@@ -160,7 +143,7 @@ public class Select : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown ("joystick button 0"))
+        if (Input.GetKeyDown ("joystick button 0"))//A
         {
             
             if(uiobj[6].activeSelf)
@@ -175,6 +158,13 @@ public class Select : MonoBehaviour
                     uiobj[4].SetActive(false);
                     GameSelect();
                 }
+            }
+
+            if(uiobj[15].activeSelf && limit + 0.2f < time)
+            {
+                uiobj[15].SetActive(false);
+                flag = false;
+                OptionMenu();
             }
         }
 
@@ -289,6 +279,28 @@ public class Select : MonoBehaviour
         }
     }
 
+    void OptionMenu()
+    {
+        soundControl.SetSE(0,4);
+        if(!flag)
+        {
+            i = 0;
+            OptionSet();
+            Time.timeScale = 0;
+            flag = true;
+            uiobj[7].SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            i = 0;
+            flag = false;
+            uiobj[7].SetActive(false);
+            uiobj[15].SetActive(false);
+            OptionSet();
+        }
+    }
+
     public void Language()
     {
         uiobj[0].SetActive(false);
@@ -316,25 +328,29 @@ public class Select : MonoBehaviour
 
     void OptionSet()
     {
-        EventSystem.current.SetSelectedGameObject(option[i]);
-        option[i].GetComponent<Button>().interactable = true;
-        if(i == 0)
+        if(!uiobj[15].activeSelf)
         {
-            option[0].GetComponent<Button>().interactable = true;
-            option[1].GetComponent<Button>().interactable = false;
-            option[2].GetComponent<Button>().interactable = false;
-        }
-        else if(i == 1)
-        {
-            option[0].GetComponent<Button>().interactable = false;
-            option[1].GetComponent<Button>().interactable = true;
-            option[2].GetComponent<Button>().interactable = false;
-        }
-        else if(i == 2)
-        {
-            option[0].GetComponent<Button>().interactable = false;
-            option[1].GetComponent<Button>().interactable = false;
-            option[2].GetComponent<Button>().interactable = true;
+            EventSystem.current.SetSelectedGameObject(option[i]);
+            option[i].GetComponent<Button>().interactable = true;
+
+            if(i == 0)
+            {
+                option[0].GetComponent<Button>().interactable = true;
+                option[1].GetComponent<Button>().interactable = false;
+                option[2].GetComponent<Button>().interactable = false;
+            }
+            else if(i == 1)
+            {
+                option[0].GetComponent<Button>().interactable = false;
+                option[1].GetComponent<Button>().interactable = true;
+                option[2].GetComponent<Button>().interactable = false;
+            }
+            else if(i == 2)
+            {
+                option[0].GetComponent<Button>().interactable = false;
+                option[1].GetComponent<Button>().interactable = false;
+                option[2].GetComponent<Button>().interactable = true;
+            }
         }
     }
     void VideoStop()
@@ -477,6 +493,11 @@ public class Select : MonoBehaviour
             Retry.saveNumber[j] = false;
         }
         
+        if(!IsInvoking("SetTraining"))Invoke("SetTraining",0.1f * Time.timeScale);
+    }
+
+    void SetTraining()
+    {
         EventSystem.current.SetSelectedGameObject(stagebutton[0]);
         stagebutton[0].GetComponent<Button>().interactable = true;
     }
@@ -671,5 +692,15 @@ public class Select : MonoBehaviour
     public void Tutorialkg()
     {
         uiobj[14].SetActive(true);
+    }
+
+    public void OpenOption()
+    {
+        soundControl.i = 1;
+        soundControl.SetSlider();
+        limit = time;
+        uiobj[15].SetActive(true);
+        EventSystem.current.SetSelectedGameObject(option[i]);
+        option[i].GetComponent<Button>().interactable = false;
     }
 }

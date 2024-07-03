@@ -7990,13 +7990,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1860219523}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1860219529}
+        m_TargetAssemblyTypeName: Select, Assembly-CSharp
+        m_MethodName: OpenOption
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17033,6 +17033,7 @@ MonoBehaviour:
   - {fileID: 103083891}
   - {fileID: 103083890}
   - {fileID: 103083890}
+  i: 0
   select: {fileID: 1860219529}
 --- !u!1 &1861961296
 GameObject:

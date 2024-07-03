@@ -16,7 +16,7 @@ public class SoundControl : MonoBehaviour
     float limit;
     float time;
     public static float stocktime;
-    int i;
+    public int i;
 
     public Select select;
     Color color;
@@ -65,7 +65,19 @@ public class SoundControl : MonoBehaviour
         }
     }
 
-    void SetSlider()
+    void SetBgmSlider()
+    {
+        EventSystem.current.SetSelectedGameObject(BGMSlider.gameObject);
+    }
+
+    void SetSeSlider()
+    {
+        Debug.Log(22);
+        EventSystem.current.SetSelectedGameObject(SESlider.gameObject);
+    }
+
+
+    public void SetSlider()
     {
         if(i == 1)
         {
@@ -73,7 +85,8 @@ public class SoundControl : MonoBehaviour
             SESlider.interactable = false;
             image[0].GetComponent<Image>().color = new Color(image[0].GetComponent<Image>().color.r,image[0].GetComponent<Image>().color.g ,image[0].GetComponent<Image>().color.b , 1);
             image[1].GetComponent<Image>().color = new Color(image[1].GetComponent<Image>().color.r,image[1].GetComponent<Image>().color.g ,image[1].GetComponent<Image>().color.b , 0.5f);
-            BGMSlider.Select();
+            //BGMSlider.Select();
+            if(!IsInvoking("SetBgmSlider"))Invoke("SetBgmSlider",0.1f * Time.timeScale);
         }
         else
         {
@@ -82,7 +95,7 @@ public class SoundControl : MonoBehaviour
             image[1].GetComponent<Image>().color = new Color(image[1].GetComponent<Image>().color.r,image[1].GetComponent<Image>().color.g ,image[1].GetComponent<Image>().color.b , 1);
             Debug.Log(image[1].GetComponent<Image>().color);
             SESlider.interactable = true;
-            SESlider.Select();
+            if(!IsInvoking("SetSeSlider"))Invoke("SetSeSlider",0.1f * Time.timeScale);
         }
     }
 
