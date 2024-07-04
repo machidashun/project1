@@ -9,10 +9,26 @@ public class Push : MonoBehaviour
     [SerializeField] private bool[] direction;
     [Header("射出速度")]
     public float speed;
+    public GameObject[] child;
 
     void Start()
     {   
-
+        if(direction[0])
+            {
+                child[0].transform.eulerAngles = new Vector3 (child[0].transform.eulerAngles.x,child[0].transform.eulerAngles.y,270);
+            }
+            else if(direction[1])
+            {
+               child[0].transform.eulerAngles = new Vector3 (child[0].transform.eulerAngles.x,child[0].transform.eulerAngles.y,90);
+            }
+            else if(direction[2])
+            {
+                child[0].transform.eulerAngles = new Vector3 (child[0].transform.eulerAngles.x,child[0].transform.eulerAngles.y,0);
+            }
+            else if(direction[3])
+            {
+                child[0].transform.eulerAngles = new Vector3 (child[0].transform.eulerAngles.x,child[0].transform.eulerAngles.y,180);
+            }
     }
 
     void OnCollisionEnter(Collision hit)

@@ -7,8 +7,10 @@ public class Door : MonoBehaviour
     public GameObject[] obj;
     SoundControl soundControl;
     bool flag;
+    public Animator animator;
     void Start()
     {
+        //animator.SetBool("open", true);
         soundControl = GameObject.Find("ControlSystem").GetComponent<SoundControl>();
     }
 
@@ -27,6 +29,7 @@ public class Door : MonoBehaviour
                 {
                     flag = true;
                     obj[0].SetActive(false);
+                    animator.SetTrigger("開く");
                     soundControl.SetSE(0,5);
                 }
             }
@@ -35,8 +38,10 @@ public class Door : MonoBehaviour
                 if(flag)
                 {
                     flag = false;
+                    animator.SetTrigger("閉じる");
                 }
                 obj[0].SetActive(true);
+                
             }
             
         }
